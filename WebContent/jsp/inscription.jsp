@@ -5,9 +5,9 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Insert title here</title>
-		<script type="text/javascript" src="js/bootstrap.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<link href="css/style.css"	title="Style" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="../js/bootstrap.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<link href="../css/style.css"	title="Style" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<input class="btn btn-info" type="button" value="test" />
