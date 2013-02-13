@@ -11,17 +11,41 @@
 	</head>
 	<body>
 		<script type="text/javascript">
+			function validMail(email) { 
+			    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			    return re.test(email);
+			}
+			function validDate(date){
+				var re = new RegExp("^[0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{4}$","g");
+				return re.test(date);
+			}
 			function validFormulaire(){
 				var b = true;
-				var text = "";
+				var text = "<div class='alert alert-error'>";
 				
 				if(document.getElementById('nom').value == ""){
 					text += "Le nom doit être renseigné <br />";
 					b = false;
 				}
+				if(document.getElementById('prenom').value == ""){
+					text += "Le prénom doit être renseigné <br />";
+					b = false;
+				}
+				if(!validMail(document.getElementById('mail').value)){
+					text += "L'email n'est pas valide <br />";
+					b = false;
+				}
+				if(!validDate(document.getElementById('ddn').value)){
+					text += "La date de naissance n'est pas valide <br />";
+					b = false;
+				}
+				if(document.getElementById('mdp').value == ""){
+					text += "Votre mot de passe ne peut être vide <br />";
+					b = false;
+				}
 				
 				document.getElementById('message').innerHTML = text;
-				alert(text);
+				text += "</div>";
 				return b;
 			}
 		</script>
