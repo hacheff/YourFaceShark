@@ -5,12 +5,18 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>YourFaceShark</title>
-		<script type="text/javascript" src="../js/bootstrap.js"></script>
-		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/jquery/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="../js/jquery/jquery-ui-1.10.1.custom.js"></script>
+		
+		<link href="../css/jquery/jquery-ui-1.10.1.custom.css"	title="Style" rel="stylesheet" type="text/css" />
 		<link href="../css/style.css"	title="Style" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<script type="text/javascript">
+			$(document).ready(function() {
+			 	$("#ddn").datepicker();
+			 	console.log("ok");
+			});
 			function validMail(email) { 
 			    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			    return re.test(email);

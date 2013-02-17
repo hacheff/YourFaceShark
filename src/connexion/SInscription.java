@@ -15,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/SInscription")
 public class SInscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
+	private static final String MAIL_REGEX = "([_A-Za-z0-9-]+)(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})";
+    private static final String DDN_REGEX = "\\d{2}/\\d{2}/\\d{4}";
+    		
+	/**
      * @see HttpServlet#HttpServlet()
      */
     public SInscription() {
@@ -41,12 +43,24 @@ public class SInscription extends HttpServlet {
 		String ddn = request.getParameter("ddn");
 		String mdp = request.getParameter("mdp");
 		
+		StringBuffer messageErreur = new StringBuffer();
+		
+		if(nom.isEmpty()){
+			messageErreur.append("Le nom ne peut être vide<br />");
+		}
+		if(prenom.isEmpty()){
+			messageErreur.append("Le prénom ne peut être vide<br />");
+		}
+		if(mail.isEmpty() || !mail.matches(MAIL_REGEX)){
+			messageErreur.append("L'adresse mail n'est pas correct<br />");
+		}
+		if(ddn.isEmpty() || !ddn.matches(DDN_REGEX)){
+			messageErreur.append("Le date de naisance doit être au format: jj/mm/yyyy<br />");
+		}		
+		if(mdp.isEmpty()){
+			messageErreur.append("Votre mot de passe est inexistant<br />");
+		}
 		PrintWriter out = response.getWriter();
-		out.println("Nom: " + nom);
-		out.println("Prénom: " + prenom);
-		out.println("DDN: " + ddn);
-		out.println("mAIL: " + mail);
-		out.println("mdp: " + mdp);
+		out.println(messageErreur.toString());
 	}
-
 }
