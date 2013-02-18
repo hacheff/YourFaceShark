@@ -15,7 +15,6 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 			 	$("#ddn").datepicker();
-			 	console.log("ok");
 			});
 			function validMail(email) { 
 			    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
