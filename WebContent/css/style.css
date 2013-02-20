@@ -1,4 +1,34 @@
+<<<<<<< HEAD
 @import "bootstrap.css";
 @import "bootstrap.min.css";
 @import "bootstrap-responsiv.css";
 @import "bootstrap-responsive.min.css";
+=======
+@import "bootstrap.css";
+@import "bootstrap.min.css";
+@import "bootstrap-responsiv.css";
+@import "bootstrap-responsive.min.css";
+
+.test{
+	background: #FF0000;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.center{
+	text-align: center;
+}
+
+/** INSCRIPTION **/
+.inscription{
+	text-align: center;
+	margin-left: 30%;
+	top: 30%;
+	position: absolute;
+	border: 1px solid #49AFCD;
+	padding: 10px;
+}
+>>>>>>> 1d66bfc7782235647c774ae3fd872aa2afbadfca
