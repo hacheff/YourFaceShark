@@ -56,6 +56,10 @@
 		</script>
 		<form method="post" action="../SInscription" class="inscription" onsubmit="return validFormulaire();">
 			<span id="message"></span>
+			<label for="civ" class="span2">Civilité: </label><select class="span3" name="civ" id="civ">
+				<option value="f" selected="selected">Femme</option>
+				<option value="m">Homme</option>
+			</select><br />
 			<label for="nom" class="span2">Nom: </label><input type="text" id="nom" name="nom" class="span3" /><br />
 			<label for="prenom" class="span2">Prénom: </label><input type="text" id="prenom" name="prenom" class="span3" /><br />
 			<label for="mail" class="span2">Mail: </label><input type="text" id="mail" name="mail" class="span3" /><br />

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bdd.Connexion;
+
 /**
  * Servlet implementation class SInscription
  */
@@ -37,6 +39,7 @@ public class SInscription extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String sexe = request.getParameter("civ");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
 		String mail = request.getParameter("mail");
@@ -59,7 +62,10 @@ public class SInscription extends HttpServlet {
 		}		
 		if(mdp.isEmpty()){
 			messageErreur.append("Votre mot de passe est inexistant<br />");
-		}
+		}	
+		
+		Connexion.insertUser(nom, prenom, sexe, mail, ddn, mdp);
+		
 		PrintWriter out = response.getWriter();
 		out.println(messageErreur.toString());
 	}

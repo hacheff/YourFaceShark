@@ -35,12 +35,12 @@ public class SConnexion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String login = request.getParameter("login");
+		String mail = request.getParameter("mail");
 		String mdp = request.getParameter("mdp");
 		
 		StringBuffer messageErreur = new StringBuffer();
 		
-		if(login.isEmpty()){
+		if(mail.isEmpty()){
 			messageErreur.append("Votre mot de passe est inexistant<br />");
 		}
 		if(mdp.isEmpty()){

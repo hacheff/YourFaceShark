@@ -17,7 +17,7 @@
 				var b = true;
 				var text = "<div class='alert alert-error'>";
 
-				if(document.getElementById('login').value == ""){
+				if(document.getElementById('mail').value == ""){
 					text += "Le login doit être renseigné <br />";
 					b = false;
 				}			
@@ -33,7 +33,7 @@
 		</script>
 		<form method="post" action="../SConnexion" class="inscription" onsubmit="return validFormulaire();">
 			<span id="message"></span>
-			<label for="login" class="span2">Login: </label><input type="text" id="login" name="login" class="span3" /><br />
+			<label for="login" class="span2">E-Mail: </label><input type="text" id="mail" name="mail" class="span3" /><br />
 			<label for="mdp" class="span2">Mot de passe: </label><input type="password" id="mdp" name="mdp" class="span3" /><br />
 			<span class="btn-group">
 				<input class="btn btn-info" type="submit" value="Valider" />

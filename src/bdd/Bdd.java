@@ -10,8 +10,8 @@ public class Bdd {
 		Connection conn = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://sql.free.fr/brain_fuck";
-			conn = DriverManager.getConnection(url, "brain.fuck", "brainfuck11");
+			String url = "jdbc:mysql://localhost:3306/yourfaceshark";
+			conn = DriverManager.getConnection(url, "root", "");
 		} catch(SQLException e) {
 			// S'il y a un problème durant la connexion
 			System.out.println("********* NO");
