@@ -1,13 +1,8 @@
-<<<<<<< HEAD
 @import "bootstrap.css";
 @import "bootstrap.min.css";
 @import "bootstrap-responsiv.css";
 @import "bootstrap-responsive.min.css";
-=======
-@import "bootstrap.css";
-@import "bootstrap.min.css";
-@import "bootstrap-responsiv.css";
-@import "bootstrap-responsive.min.css";
+
 
 .test{
 	background: #FF0000;
@@ -45,5 +40,3 @@
 .form2{
 	
 }
-
->>>>>>> 1d66bfc7782235647c774ae3fd872aa2afbadfca

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class connexion
  */
-@WebServlet("/connexion")
+@WebServlet("/SConnexion")
 public class SConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

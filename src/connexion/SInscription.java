@@ -3,6 +3,7 @@ package connexion;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,7 +47,7 @@ public class SInscription extends HttpServlet {
 		String ddn = request.getParameter("ddn");
 		String mdp = request.getParameter("mdp");
 		
-		StringBuffer messageErreur = new StringBuffer();
+		StringBuffer messageErreur = new StringBuffer("");
 		
 		if(nom.isEmpty()){
 			messageErreur.append("Le nom ne peut être vide<br />");
@@ -63,10 +64,15 @@ public class SInscription extends HttpServlet {
 		if(mdp.isEmpty()){
 			messageErreur.append("Votre mot de passe est inexistant<br />");
 		}	
-		
-		Connexion.insertUser(nom, prenom, sexe, mail, ddn, mdp);
-		
 		PrintWriter out = response.getWriter();
-		out.println(messageErreur.toString());
+		if(!messageErreur.equals("")){
+			request.getSession().setAttribute("erreur", messageErreur.toString());
+			RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
+			rd.include(request,response);
+		}
+		else{
+			Connexion.insertUser(nom, prenom, sexe, mail, ddn, mdp);	
+			out.println("Inscription effectué");
+		}
 	}
 }
