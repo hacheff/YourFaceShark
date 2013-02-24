@@ -8,12 +8,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import social.User;
+
+import bdd.Connexion;
 /**
  * Servlet implementation class connexion
  */
 @WebServlet("/SConnexion")
 public class SConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String MAIL_REGEX = "([_A-Za-z0-9-]+)(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -38,23 +43,39 @@ public class SConnexion extends HttpServlet {
 		String mdp = request.getParameter("mdp");
 		
 		StringBuffer messageErreur = new StringBuffer();
+		boolean	 erreur = false;
 		
-		if(mail.isEmpty()){
+		if(mail.isEmpty() || !mail.matches(MAIL_REGEX)){
 			messageErreur.append("Votre adrese mail est vide<br />");
+			erreur = true;
 		}
 		if(mdp.isEmpty()){
 			messageErreur.append("Votre mot de passe est vide<br />");
+			erreur = true;
 		}
 		
 		PrintWriter out = response.getWriter();
-		if(!messageErreur.equals("")){
+		if(erreur){
 			
 			request.getSession().setAttribute("erreur", "<div class='alert alert-error'>"+messageErreur.toString()+"</div>");
 			response.sendRedirect("jsp/connexion.jsp"); 
 		}
 		else{
-			// TODO Test Mail mot de passe	
-			out.println("Connexion à tester");
+			Connexion.connectUser(mail, mdp, request.getSession());	
+			User user = (User) request.getSession().getAttribute("user");
+			if(user != null){
+				out.println(user.getId());
+				out.println(user.getNom());
+				out.println(user.getPrenom());
+				out.println(user.getSexe());
+				out.println(user.getMail());
+				out.println(user.getDate());
+				out.println(user.getMdp());
+			}
+			else{
+				request.getSession().setAttribute("erreur", "<div class='alert alert-error'>Identifiants incorrects</div>");
+				response.sendRedirect("jsp/connexion.jsp");
+			}
 		}
 	}
 

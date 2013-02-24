@@ -1,8 +1,13 @@
 package bdd;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.servlet.http.HttpSession;
+
+import social.User;
 
 public class Connexion {
 	
@@ -20,8 +25,25 @@ public class Connexion {
 			e.printStackTrace();
 			return false;
 		}
-		
 		return (nRows != 0);
+	}
+	
+	public static boolean connectUser(String mail, String mdp, HttpSession session){
+		Connection conn = Bdd.connectBdd();
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM User WHERE mail='"+mail+"' AND password ='"+mdp+"'");
+			while(rs.next()) {
+				User user = new User(rs.getInt("idUser"), rs.getString("sexe").charAt(0), rs.getString("nom"), rs.getString("prenom"), mail, rs.getDate("dateNaissance"), mdp);
+				session.setAttribute("user", user);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 	
 	private static String changeDate(String date){

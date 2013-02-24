@@ -1,77 +1,100 @@
 -- phpMyAdmin SQL Dump
--- version 3.1.5
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
--- Serveur: brain.fuck.sql.free.fr
--- Généré le : Mer 20 Février 2013 à 09:24
--- Version du serveur: 5.0.83
--- Version de PHP: 5.3.9
+-- Client: localhost
+-- Généré le: Mer 20 Février 2013 à 09:59
+-- Version du serveur: 5.5.24-log
+-- Version de PHP: 5.4.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `brain_fuck`
+-- Base de données: `yourfaceshark`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Like`
+-- Structure de la table `like`
 --
 
-CREATE TABLE IF NOT EXISTS `Like` (
-  `idLike` int(11) NOT NULL auto_increment,
-  `idPost` int(11) NOT NULL,
-  `like` int(11) NOT NULL default '0',
-  `dislike` int(11) NOT NULL default '0',
-  PRIMARY KEY  (`idLike`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
+CREATE TABLE IF NOT EXISTS `like` (
+  `idLike` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idPost` int(10) unsigned NOT NULL DEFAULT '0',
+  `like` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `dislike` smallint(5) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`idLike`),
+  KEY `idPost` (`idPost`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `Like`
+-- Contenu de la table `like`
 --
 
+INSERT INTO `like` (`idLike`, `idPost`, `like`, `dislike`) VALUES
+(1, 1, 2, 1),
+(2, 2, 15, 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Post`
+-- Structure de la table `post`
 --
 
-CREATE TABLE IF NOT EXISTS `Post` (
-  `idPost` int(11) NOT NULL auto_increment,
-  `idPosteur` int(11) NOT NULL,
-  `idCiblePost` int(11) NOT NULL,
-  `texte` varchar(1500) collate latin1_general_ci default NULL,
-  `date` date NOT NULL,
-  `url` varchar(150) collate latin1_general_ci default NULL,
-  PRIMARY KEY  (`idPost`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
+CREATE TABLE IF NOT EXISTS `post` (
+  `idPost` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idPosteur` int(10) unsigned NOT NULL DEFAULT '0',
+  `idCible` int(10) unsigned NOT NULL DEFAULT '0',
+  `texte` varchar(1500) NOT NULL DEFAULT '',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `url` varchar(250) NOT NULL DEFAULT '',
+  PRIMARY KEY (`idPost`),
+  KEY `idCible` (`idCible`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `Post`
+-- Contenu de la table `post`
 --
 
+INSERT INTO `post` (`idPost`, `idPosteur`, `idCible`, `texte`, `date`, `url`) VALUES
+(1, 1, 1, '1er post trololo', '2013-02-20 09:51:56', ''),
+(2, 4, 3, 'Le snow, c''est la base ! ', '2013-02-20 09:51:56', 'http://membres.multimania.fr/ecoutelecoulidusnow/snowboard-22.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `User`
+-- Structure de la table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `User` (
-  `idUser` int(11) NOT NULL auto_increment,
-  `nom` varchar(45) collate latin1_general_ci NOT NULL,
-  `prenom` varchar(45) collate latin1_general_ci NOT NULL,
+CREATE TABLE IF NOT EXISTS `user` (
+  `idUser` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nom` varchar(30) NOT NULL DEFAULT '',
+  `prenom` varchar(30) NOT NULL DEFAULT '',
   `dateNaissance` date NOT NULL,
-  `sexe` varchar(1) collate latin1_general_ci NOT NULL,
-  `mail` varchar(45) collate latin1_general_ci NOT NULL,
-  `password` varchar(45) collate latin1_general_ci NOT NULL,
-  PRIMARY KEY  (`idUser`),
-  UNIQUE KEY `idUser` (`idUser`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
+  `sexe` char(1) NOT NULL DEFAULT '',
+  `mail` varchar(50) NOT NULL DEFAULT '',
+  `password` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`idUser`),
+  KEY `nom` (`nom`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `User`
+-- Contenu de la table `user`
 --
 
+INSERT INTO `user` (`idUser`, `nom`, `prenom`, `dateNaissance`, `sexe`, `mail`, `password`) VALUES
+(1, 'Mumpert', 'Clémence', '1990-05-21', 'f', 'c.mumpert@gmail.com', 'clemence'),
+(2, 'Fontaine', 'Hugo', '1991-04-17', 'm', 'hugo.fontaine@live.fr', 'hugo'),
+(3, 'Mouliac', 'Bastien', '1992-03-30', 'm', 'bmouliac@gmail.com', 'bastien');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

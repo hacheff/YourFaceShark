@@ -47,25 +47,30 @@ public class SInscription extends HttpServlet {
 		String mdp = request.getParameter("mdp");
 		
 		StringBuffer messageErreur = new StringBuffer("");
+		boolean erreur = false;
 		
 		if(nom.isEmpty()){
 			messageErreur.append("Le nom ne peut être vide<br />");
+			erreur = true;
 		}
 		if(prenom.isEmpty()){
 			messageErreur.append("Le prénom ne peut être vide<br />");
+			erreur = true;
 		}
 		if(mail.isEmpty() || !mail.matches(MAIL_REGEX)){
 			messageErreur.append("L'adresse mail n'est pas correct<br />");
+			erreur = true;
 		}
 		if(ddn.isEmpty() || !ddn.matches(DDN_REGEX)){
 			messageErreur.append("Le date de naisance doit être au format: jj/mm/yyyy<br />");
+			erreur = true;
 		}		
 		if(mdp.isEmpty()){
 			messageErreur.append("Votre mot de passe est inexistant<br />");
+			erreur = true;
 		}	
 		PrintWriter out = response.getWriter();
-		if(!messageErreur.equals("")){
-			
+		if(erreur){			
 			request.getSession().setAttribute("erreur", "<div class='alert alert-error'>"+messageErreur.toString()+"</div>");
 			response.sendRedirect("jsp/inscription.jsp"); 
 		}
