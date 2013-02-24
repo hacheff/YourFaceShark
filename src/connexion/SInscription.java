@@ -3,7 +3,6 @@ package connexion;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -66,9 +65,9 @@ public class SInscription extends HttpServlet {
 		}	
 		PrintWriter out = response.getWriter();
 		if(!messageErreur.equals("")){
-			request.getSession().setAttribute("erreur", messageErreur.toString());
-			RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
-			rd.include(request,response);
+			
+			request.getSession().setAttribute("erreur", "<div class='alert alert-error'>"+messageErreur.toString()+"</div>");
+			response.sendRedirect("jsp/inscription.jsp"); 
 		}
 		else{
 			Connexion.insertUser(nom, prenom, sexe, mail, ddn, mdp);	

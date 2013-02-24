@@ -11,6 +11,10 @@
 		<link href="../css/bootstrap-responsive.css"	title="Style" rel="stylesheet" type="text/css" />
 		<link href="../css/style.css"	title="Style" rel="stylesheet" type="text/css" />
 		
+		<script type="text/javascript" src="../js/jquery/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="../js/jquery/jquery-ui-1.10.1.custom.js"></script>
+		
+		<link href="../css/jquery/jquery-ui-1.10.1.custom.css"	title="Style" rel="stylesheet" type="text/css" />		
 		<link rel="shortcut icon" href="../img/logo.png">		
 	</head>
 	<body>
@@ -24,8 +28,8 @@
 			</div>
 			<div class="form2">
 				<form class="form-inline" action="../SConnexion" method="post">
-				  <input type="text" class="input-small search-query" placeholder="Email">
-				  <input type="password" class="input-small search-query" placeholder="Password">
+				  <input type="text" class="input-small search-query" placeholder="Email" name="mail">
+				  <input type="password" class="input-small search-query" placeholder="Password" name="mdp">
 				  <button type="submit" class="btn btn-info"><i class="icon-ok icon-white"></i> Connexion</button>
 				</form>
 			</div>

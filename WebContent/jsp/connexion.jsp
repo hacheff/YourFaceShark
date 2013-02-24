@@ -32,7 +32,12 @@
 			}
 		</script>
 		<form method="post" action="../SConnexion" class="inscription" onsubmit="return validFormulaire();">
-			<span id="message"></span>
+			<span id="message"><%
+				if(request.getSession().getAttribute("erreur") != null){
+					out.println(request.getSession().getAttribute("erreur"));
+					request.setAttribute("erreur", null);
+				}
+			%></span>
 			<label for="login" class="span2">E-Mail: </label><input type="text" id="mail" name="mail" class="span3" /><br />
 			<label for="mdp" class="span2">Mot de passe: </label><input type="password" id="mdp" name="mdp" class="span3" /><br />
 			<span class="btn-group">

@@ -1,17 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>YourFaceShark</title>
-		<script type="text/javascript" src="../js/jquery/jquery-1.9.1.js"></script>
-		<script type="text/javascript" src="../js/jquery/jquery-ui-1.10.1.custom.js"></script>
-		
-		<link href="../css/jquery/jquery-ui-1.10.1.custom.css"	title="Style" rel="stylesheet" type="text/css" />
-		<link href="../css/style.css"	title="Style" rel="stylesheet" type="text/css" />
-	</head>
-	<body>
+<jsp:include page="header.jsp"/>
 		<script type="text/javascript">
 			$(document).ready(function() {
 			 	$("#ddn").datepicker();
@@ -54,9 +41,13 @@
 				return b;
 			}
 		</script>		
+		<jsp:useBean id="user" scope="session" class="connexion.SInscription"/>
 		<form method="post" action="../SInscription" class="inscription" onsubmit="return validFormulaire();">
 			<span id="message"><%
-				request.getSession().getAttribute("erreur");
+				if(request.getSession().getAttribute("erreur") != null){
+					out.println(request.getSession().getAttribute("erreur"));
+					request.setAttribute("erreur", null);
+				}
 			%></span>
 			<label for="civ" class="span2">Civilité: </label><select class="span3" name="civ" id="civ">
 				<option value="f" selected="selected">Femme</option>

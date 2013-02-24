@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 /**
  * Servlet implementation class connexion
  */
@@ -41,14 +40,22 @@ public class SConnexion extends HttpServlet {
 		StringBuffer messageErreur = new StringBuffer();
 		
 		if(mail.isEmpty()){
-			messageErreur.append("Votre mot de passe est inexistant<br />");
+			messageErreur.append("Votre adrese mail est vide<br />");
 		}
 		if(mdp.isEmpty()){
-			messageErreur.append("Votre mot de passe est inexistant<br />");
+			messageErreur.append("Votre mot de passe est vide<br />");
 		}
 		
 		PrintWriter out = response.getWriter();
-		out.println(messageErreur.toString());
+		if(!messageErreur.equals("")){
+			
+			request.getSession().setAttribute("erreur", "<div class='alert alert-error'>"+messageErreur.toString()+"</div>");
+			response.sendRedirect("jsp/connexion.jsp"); 
+		}
+		else{
+			// TODO Test Mail mot de passe	
+			out.println("Connexion à tester");
+		}
 	}
 
 }
