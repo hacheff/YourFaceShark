@@ -40,8 +40,7 @@
 				text += "</div>";
 				return b;
 			}
-		</script>		
-		<jsp:useBean id="user" scope="session" class="connexion.SInscription"/>
+		</script>				
 		<form method="post" action="../SInscription" class="inscription" onsubmit="return validFormulaire();">
 			<span id="message"><%
 				if(request.getSession().getAttribute("erreur") != null){
