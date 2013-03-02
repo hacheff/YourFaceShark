@@ -36,14 +36,17 @@
 		</script>
 		<%
 			// CONNEXION AUTOMATIQUE SI COOKIE
+			// Faire une fonction a part ça serrais mieux
 			Cookie[] cookies = request.getCookies();
-			for(int i = 0; i < cookies.length; i++){
-				if(SConnexion.COOKIE_NAME.equals(cookies[i].getName())){
-					if(Connexion.connectUser(Integer.parseInt(cookies[i].getValue()), request.getSession())){
-						User user = (User) request.getSession().getAttribute("user");
-						if(user != null){
-							response.sendRedirect("jaws.jsp");							
-						}		
+			if(cookies != null){
+				for(int i = 0; i < cookies.length; i++){
+					if(SConnexion.COOKIE_NAME.equals(cookies[i].getName())){
+						if(Connexion.connectUser(Integer.parseInt(cookies[i].getValue()), request.getSession())){
+							User user = (User) request.getSession().getAttribute("user");
+							if(user != null){
+								response.sendRedirect("jaws.jsp");							
+							}		
+						}
 					}
 				}
 			}
