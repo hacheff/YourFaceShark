@@ -53,7 +53,7 @@ public class Connexion {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM User WHERE idUser='"+id+"'");
 			while(rs.next()) {
-				User user = new User(rs.getInt("idUser"), rs.getString("sexe").charAt(0), rs.getString("nom"), rs.getString("prenom"), rs.getString("mail"), rs.getDate("dateNaissance"), rs.getString("mdp"));
+				User user = new User(rs.getInt("idUser"), rs.getString("sexe").charAt(0), rs.getString("nom"), rs.getString("prenom"), rs.getString("mail"), rs.getDate("dateNaissance"), rs.getString("password"));
 				session.setAttribute("user", user);
 			}
 		} catch (SQLException e) {

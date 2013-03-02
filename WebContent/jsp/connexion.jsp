@@ -42,8 +42,7 @@
 					if(Connexion.connectUser(Integer.parseInt(cookies[i].getValue()), request.getSession())){
 						User user = (User) request.getSession().getAttribute("user");
 						if(user != null){
-							out.print(user.getNom());
-							response.sendRedirect("jaws.jsp"); 
+							response.sendRedirect("jaws.jsp");							
 						}		
 					}
 				}
@@ -60,7 +59,7 @@
 			%></span>
 			<label for="login" class="span2">E-Mail: </label><input type="text" id="mail" name="mail" class="span3" /><br />
 			<label for="mdp" class="span2">Mot de passe: </label><input type="password" id="mdp" name="mdp" class="span3" /><br />
-			<span class="spa4n"><input type="checkbox" name="cookie" value="true" /> Connexion automatique</span><br /><br />
+			<span class="span4"><input type="checkbox" name="cookie" value="true" /> Connexion automatique</span><br /><br />
 			<span class="btn-group">
 				<input class="btn btn-info" type="submit" value="Valider" />
 				<input class="btn btn-info" type="reset" value="Reinitialiser" />
