@@ -45,7 +45,7 @@
 			<span id="message"><%
 				if(request.getSession().getAttribute("erreur") != null){
 					out.println(request.getSession().getAttribute("erreur"));
-					request.setAttribute("erreur", null);
+					request.removeAttribute("erreur");
 				}
 			%></span>
 			<label for="civ" class="span2">Civilité: </label><select class="span3" name="civ" id="civ">

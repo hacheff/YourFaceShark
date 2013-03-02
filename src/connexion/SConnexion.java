@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,20 +20,22 @@ import bdd.Connexion;
 public class SConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String MAIL_REGEX = "([_A-Za-z0-9-]+)(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})";
+	
+	public static final String COOKIE_NAME = "YourFaceShark";
+	private static final int COOKIE_DUREE = 2678400; // 1 mois
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public SConnexion() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 	}
 
 	/**
@@ -58,19 +61,19 @@ public class SConnexion extends HttpServlet {
 		if(erreur){
 			
 			request.getSession().setAttribute("erreur", "<div class='alert alert-error'>"+messageErreur.toString()+"</div>");
-			response.sendRedirect("jsp/connexion.jsp"); 
+			response.sendRedirect("jsp/connexion.jsp");
 		}
 		else{
 			Connexion.connectUser(mail, mdp, request.getSession());	
 			User user = (User) request.getSession().getAttribute("user");
 			if(user != null){
-				out.println(user.getId());
-				out.println(user.getNom());
-				out.println(user.getPrenom());
-				out.println(user.getSexe());
-				out.println(user.getMail());
-				out.println(user.getDate());
-				out.println(user.getMdp());
+				if(request.getParameter("cookie") != null){
+					// AJOUT DU COOKIE
+					Cookie auChocolat = new Cookie(COOKIE_NAME, String.valueOf(user.getId()));
+					auChocolat.setMaxAge(COOKIE_DUREE);
+					response.addCookie(auChocolat);
+				}
+				response.sendRedirect("jsp/jaws.jsp"); 
 			}
 			else{
 				request.getSession().setAttribute("erreur", "<div class='alert alert-error'>Identifiants incorrects</div>");

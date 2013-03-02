@@ -46,6 +46,24 @@ public class Connexion {
 		return true;
 	}
 	
+	public static boolean connectUser(int id, HttpSession session){
+		Connection conn = Bdd.connectBdd();
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM User WHERE idUser='"+id+"'");
+			while(rs.next()) {
+				User user = new User(rs.getInt("idUser"), rs.getString("sexe").charAt(0), rs.getString("nom"), rs.getString("prenom"), rs.getString("mail"), rs.getDate("dateNaissance"), rs.getString("mdp"));
+				session.setAttribute("user", user);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
 	private static String changeDate(String date){
 		String[] tab = date.split("/");
 		return tab[2]+"-"+tab[1]+"-"+tab[0];
