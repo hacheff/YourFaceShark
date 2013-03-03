@@ -14,12 +14,12 @@ public class Bdd {
 			conn = DriverManager.getConnection(url, "root", "");
 		} catch(SQLException e) {
 			// S'il y a un problème durant la connexion
-			System.out.println("********* NO");
+			System.out.println("********* PROBLEME DURANT LA CONNEXION");
 			e.printStackTrace();
 		} catch(Exception e) {
 			// Si le driver JDBC ne peut pas être chargé
 			e.printStackTrace();
-			System.out.println("********* NO2");
+			System.out.println("********* PROBLEME DRIVER JDBC");
 		}
 		return conn;
 	}

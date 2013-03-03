@@ -75,7 +75,10 @@ public class SInscription extends HttpServlet {
 			response.sendRedirect("jsp/inscription.jsp"); 
 		}
 		else{
-			Connexion.insertUser(nom, prenom, sexe, mail, ddn, mdp);	
+			if(!Connexion.insertUser(nom, prenom, sexe, mail, ddn, mdp)){
+				request.getSession().setAttribute("erreurCatch", "Erreur Inscription: probleme BDD <br/> SInscription - DoPost");
+				response.sendRedirect("jsp/error.jsp");
+			}
 			out.println("Inscription effectué");
 		}
 	}

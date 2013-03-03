@@ -1,7 +1,6 @@
 package connexion;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,27 +56,31 @@ public class SConnexion extends HttpServlet {
 			erreur = true;
 		}
 		
-		PrintWriter out = response.getWriter();
 		if(erreur){
 			
 			request.getSession().setAttribute("erreur", "<div class='alert alert-error'>"+messageErreur.toString()+"</div>");
 			response.sendRedirect("jsp/connexion.jsp");
 		}
 		else{
-			Connexion.connectUser(mail, mdp, request.getSession());	
-			User user = (User) request.getSession().getAttribute("user");
-			if(user != null){
-				if(request.getParameter("cookie") != null){
-					// AJOUT DU COOKIE
-					Cookie auChocolat = new Cookie(COOKIE_NAME, String.valueOf(user.getId()));
-					auChocolat.setMaxAge(COOKIE_DUREE);
-					response.addCookie(auChocolat);
-				}
-				response.sendRedirect("jsp/jaws.jsp"); 
+			if(!Connexion.connectUser(mail, mdp, request.getSession())){
+				request.getSession().setAttribute("erreurCatch", "Erreur Connexion: probleme BDD <br/> SConnexion - DoPost");
+				response.sendRedirect("jsp/error.jsp");
 			}
 			else{
-				request.getSession().setAttribute("erreur", "<div class='alert alert-error'>Identifiants incorrects</div>");
-				response.sendRedirect("jsp/connexion.jsp");
+				User user = (User) request.getSession().getAttribute("user");
+				if(user != null){
+					if(request.getParameter("cookie") != null){
+						// AJOUT DU COOKIE
+						Cookie auChocolat = new Cookie(COOKIE_NAME, String.valueOf(user.getId()));
+						auChocolat.setMaxAge(COOKIE_DUREE);
+						response.addCookie(auChocolat);
+					}
+					response.sendRedirect("jsp/jaws.jsp"); 
+				}
+				else{
+					request.getSession().setAttribute("erreur", "<div class='alert alert-error'>Identifiants incorrects</div>");
+					response.sendRedirect("jsp/connexion.jsp");
+				}
 			}
 		}
 	}

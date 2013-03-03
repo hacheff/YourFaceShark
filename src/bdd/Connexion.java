@@ -13,6 +13,9 @@ public class Connexion {
 	
 	public static boolean insertUser(String nom, String prenom, String sexe, String mail, String date, String mdp){
 		Connection conn = Bdd.connectBdd();
+		if(conn == null){
+			return false;
+		}
 		Statement stmt;
 		int nRows = 0;
 		try {
@@ -30,6 +33,9 @@ public class Connexion {
 	
 	public static boolean connectUser(String mail, String mdp, HttpSession session){
 		Connection conn = Bdd.connectBdd();
+		if(conn == null){
+			return false;
+		}
 		Statement stmt;
 		try {
 			stmt = conn.createStatement();
@@ -49,6 +55,9 @@ public class Connexion {
 	public static boolean connectUser(int id, HttpSession session){
 		Connection conn = Bdd.connectBdd();
 		Statement stmt;
+		if(conn == null){
+			return false;
+		}
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM User WHERE idUser='"+id+"'");

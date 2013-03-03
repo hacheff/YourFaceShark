@@ -47,6 +47,10 @@
 								response.sendRedirect("jaws.jsp");							
 							}		
 						}
+						else{
+							request.getSession().setAttribute("erreurCatch", "Erreur Connexion: probleme BDD <br/> connexion.jsp - Connexion COOKIE");
+							response.sendRedirect("error.jsp");
+						}
 					}
 				}
 			}
