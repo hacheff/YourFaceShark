@@ -44,7 +44,7 @@
 				</form>
 				<div class="infos"><% out.println(" "+u.getPrenom()+" "+u.getNom()); %></div>
 			<a href=""><img alt="logo" src="../img/logo.png" class="right logo" /></a><br/><br/>
-		 </div>
+		 </div> 
 		</div>
 			<% } %>
 		
