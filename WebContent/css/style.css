@@ -35,6 +35,8 @@
 	heigh: 5%;
 	min-width: 40px;
 	min-heigh: 40px;
+	max-height: 70px;
+	max-width: 70px;
 }
 .form{
 	display: inline;
