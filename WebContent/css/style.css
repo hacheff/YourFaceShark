@@ -28,15 +28,18 @@
 }
 
 .logo{
-	float: right;
-	width: 8%;
-	heigh: 8%;
-	min-width: 50px;
-	min-heigh: 50px;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 5%;
+	heigh: 5%;
+	min-width: 40px;
+	min-heigh: 40px;
 }
-.form1{
-	
+.form{
+	display: inline;
 }
-.form2{
-	
+.infos{
+	display: inline;
+	color: white;
 }

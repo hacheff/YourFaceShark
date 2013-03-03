@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="social.User"%>
 <!DOCTYPE>
 <html>
 	<head>
@@ -18,24 +19,34 @@
 		<link rel="shortcut icon" href="../img/logo.png">		
 	</head>
 	<body>
-		<div class="navbar navbar-inverse">
-		  <div class="navbar-inner">
-		  	<div class="form1">
-				<form class="form-search" method="post">
+	<% 	User u=(User) request.getSession().getAttribute("user");
+			if(u==null){%>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+		  <div class="navbar-inner"><br/>
+				<form class="form-search form" method="post">
 				  <input type="text" class="input-medium search-query">
 				  <button type="submit" class="btn btn-info">Rechercher</button>
 				</form>
-			</div>
-			<div class="form2">
-				<form class="form-inline" action="../SConnexion" method="post">
-				  <input type="text" class="input-small search-query" placeholder="Email" name="mail">
-				  <input type="password" class="input-small search-query" placeholder="Password" name="mdp">
+				<form class="form-inline form" action="../SConnexion" method="post">
+				  <input type="text" class="input-medium search-query" placeholder="Email" name="mail">
+				  <input type="password" class="input-medium search-query" placeholder="Password" name="mdp">
 				  <button type="submit" class="btn btn-info"><i class="icon-ok icon-white"></i> Connexion</button>
 				</form>
-			</div>
-			<a href=""><img alt="logo" src="../img/logo.png" class="right logo" /></a>
+			<a href=""><img alt="logo" src="../img/logo.png" class="right logo" /></a><br/><br/>
 		 </div>
 		</div>
+			<% }else{ %>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+		  <div class="navbar-inner"><br/>
+				<form class="form-search form" method="post">
+				  <input type="text" class="input-medium search-query">
+				  <button type="submit" class="btn btn-info">Rechercher</button>
+				</form>
+				<div class="infos"><% out.println(" "+u.getPrenom()+" "+u.getNom()); %></div>
+			<a href=""><img alt="logo" src="../img/logo.png" class="right logo" /></a><br/><br/>
+		 </div>
+		</div>
+			<% } %>
 		
 	</body>
 </html>
