@@ -62,5 +62,4 @@
 				<input class="btn btn-info" type="reset" value="Reinitialiser" />
 			</span>			
 		</form>
-	</body>
-</html>
+<jsp:include page="footer.jsp"/>

@@ -1,4 +1,5 @@
 <%@ page import="social.User"%>
+<jsp:include page="header.jsp"/>
 <%	
 	User user = (User) request.getSession().getAttribute("user");
 	if(user != null){
@@ -14,3 +15,4 @@
 		out.println("FAIL");	
 	}
 %>
+<jsp:include page="footer.jsp"/>

@@ -3,7 +3,9 @@
 @import "bootstrap-responsiv.css";
 @import "bootstrap-responsive.min.css";
 
-
+.clear{
+	clear: both;
+}
 .test{
 	background: #FF0000;
 }
@@ -32,7 +34,6 @@
 	right: 5px;
 	top: 5px;
 	width: 5%;
-	heigh: 5%;
 	min-width: 40px;
 	min-heigh: 40px;
 	max-height: 70px;
@@ -44,4 +45,18 @@
 .infos{
 	display: inline;
 	color: white;
-} 
+}
+.footer{
+	border: 0px;
+	position: fixed;
+	bottom: 0px;
+	margin-left: 20px;
+}
+.logoFooter{
+    margin-left: -10px;
+    max-height: 100px;
+    max-width: 100px;
+}
+.copyright{
+	color: black;
+}
