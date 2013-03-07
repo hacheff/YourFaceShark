@@ -47,6 +47,4 @@
 		 </div> 
 		</div>
 			<% } %>
-		
-	</body>
-</html>
+		<div class="visible-desktop getDown"></div>

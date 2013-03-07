@@ -6,6 +6,9 @@
 .clear{
 	clear: both;
 }
+textarea{
+	resize: none;	
+}
 .test{
 	background: #FF0000;
 }
@@ -59,4 +62,24 @@
 }
 .copyright{
 	color: black;
+}
+.getDown{
+	margin-top: 85px;
+}
+/** PROFILE **/
+.photoProfile{
+    height: 180px;
+    width: 180px;
+}
+.bgProfile{
+	border: 2px solid #111111;
+	border-radius: 5px;
+	width: 160px;
+	height: 160px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+.nomProfile{
+	font-size: 2em;
+    padding: 12px;
 }
