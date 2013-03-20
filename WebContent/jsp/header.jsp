@@ -32,7 +32,7 @@
 				  <input type="password" class="input-medium search-query" placeholder="Password" name="mdp">
 				  <button type="submit" class="btn btn-info"><i class="icon-ok icon-white"></i> Connexion</button>
 				</form>
-			<a href=""><img alt="logo" src="../img/logo.png" class="right logo" /></a><br/><br/>
+				<img alt="logo" src="../img/logo.png" class="right logo" /><br/><br/>
 		 </div>
 		</div>
 			<% }else{ %>
@@ -42,8 +42,8 @@
 				  <input type="text" class="input-medium search-query">
 				  <button type="submit" class="btn btn-info">Rechercher</button>
 				</form>
-				<div class="infos"><% out.println(" "+u.getPrenom()+" "+u.getNom()); %></div>
-			<a href=""><img alt="logo" src="../img/logo.png" class="right logo" /></a><br/><br/>
+				<div class="infos"><a href="jaws.jsp"><% out.println(" "+u.getPrenom()+" "+u.getNom()); %></a></div>
+				<a href="pipeline.jsp"><img alt="logo" src="../img/logo.png" class="right logo" /></a><br/><br/>
 		 </div> 
 		</div>
 			<% } %>

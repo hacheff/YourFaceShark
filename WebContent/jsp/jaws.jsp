@@ -18,7 +18,7 @@
 <%
 	User user = (User) request.getSession().getAttribute("user");
 	if(user != null){
-		out.println("<div class='span7 nomProfile'>");
+		out.println("<div class='span clear nomProfile'>");
 		out.println(user.getNom() + " " + user.getPrenom());
 		out.println("</div>");
 %>
