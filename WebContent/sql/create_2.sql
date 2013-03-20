@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: 127.0.0.1
--- Généré le : Mer 20 Mars 2013 à 09:05
+-- Généré le : Mer 20 Mars 2013 à 09:49
 -- Version du serveur: 5.5.20
 -- Version de PHP: 5.3.9
 
@@ -79,7 +79,6 @@ CREATE TABLE IF NOT EXISTS `photos` (
   `idPhoto` int(11) NOT NULL AUTO_INCREMENT,
   `idUser` int(11) NOT NULL,
   `lien` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
-  `profile` tinyint(1) NOT NULL,
   PRIMARY KEY (`idPhoto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
@@ -122,6 +121,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `sexe` char(1) NOT NULL DEFAULT '',
   `mail` varchar(50) NOT NULL DEFAULT '',
   `password` varchar(50) NOT NULL DEFAULT '',
+  `profile` int(11) DEFAULT NULL,
   PRIMARY KEY (`idUser`),
   KEY `nom` (`nom`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
@@ -130,11 +130,11 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`idUser`, `nom`, `prenom`, `dateNaissance`, `sexe`, `mail`, `password`) VALUES
-(1, 'Mumpert', 'Clémence', '1990-05-21', 'f', 'c.mumpert@gmail.com', 'clemence'),
-(3, 'Fontaine', 'Hugo', '1991-04-17', 'm', 'hugo.fontaine@live.fr', 'hugo'),
-(4, 'Mouliac', 'Bastien', '1992-03-30', 'm', 'bmouliac@gmail.com', 'bastien'),
-(5, 'Chassot', 'Florian', '1991-09-29', 'm', 'florian.chassot@gmail.com', 'florian');
+INSERT INTO `user` (`idUser`, `nom`, `prenom`, `dateNaissance`, `sexe`, `mail`, `password`, `profile`) VALUES
+(1, 'Mumpert', 'Clémence', '1990-05-21', 'f', 'c.mumpert@gmail.com', 'clemence', 0),
+(3, 'Fontaine', 'Hugo', '1991-04-17', 'm', 'hugo.fontaine@live.fr', 'hugo', 0),
+(4, 'Mouliac', 'Bastien', '1992-03-30', 'm', 'bmouliac@gmail.com', 'bastien', 0),
+(5, 'Chassot', 'Florian', '1991-09-29', 'm', 'florian.chassot@gmail.com', 'florian', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
