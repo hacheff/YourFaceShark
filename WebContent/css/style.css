@@ -48,6 +48,8 @@ textarea{
 .infos{
 	display: inline;
 	color: white;
+	font-weight:bold;
+	font-size: 1.6em;
 }
 .footer{
 	border: 0px;
