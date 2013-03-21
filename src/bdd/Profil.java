@@ -1,10 +1,16 @@
 package bdd;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import social.Post;
 
 public class Profil {
+	
 	public static boolean modifyUser(int id, String nom, String prenom, String sexe, String mail, String date, String mdp){
 		Connection conn = Bdd.connectBdd();
 		if(conn == null){
@@ -16,6 +22,59 @@ public class Profil {
 			stmt = conn.createStatement();
 			nRows = stmt.executeUpdate("UPDATE User SET sexe='"+ sexe +"', nom='"+ nom +"', prenom='"+ prenom +"', mail='"+ mail +"', dateNaissance='"+ changeDate(date) +"', password='"+ mdp +"' WHERE idUser='" + id + "'");
 			System.out.println("UPDATE User SET sexe='"+ sexe +"', nom='"+ nom +"', prenom='"+ prenom +"', mail='"+ mail +"', dateNaissance='"+ changeDate(date) +"', password='"+ mdp +"' WHERE idUser='" + id + "'");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return (nRows != 0);
+	}
+	
+	public static List<Post> selectPost(Integer idUser, int debut){
+		Connection conn = Bdd.connectBdd();
+		if(conn == null){
+			return null;
+		}
+		Statement stmt;
+		ResultSet rs = null;
+		List<Post> list = new ArrayList<Post>();
+		try {
+			stmt = conn.createStatement();
+			String requete = "SELECTp.texte as 'text', p.date as 'date', p.url as 'url'" +
+					" FROM POST p" +
+					" WHERE idPosteur = '" + idUser + "'" +					
+					" ORDER BY date DESC" +
+					" LIMIT " + debut + " , " + (debut + 30) + "";
+			rs = stmt.executeQuery(requete);
+			Post post = new Post();
+			post.setIdPosteur(idUser);
+			while(rs.next()) {
+				post.setDate(rs.getDate(rs.findColumn("date")));
+				post.setTexte(rs.getString("text"));
+				post.setUrl(rs.getString("url"));
+				
+				list.add(post);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return new ArrayList<Post>();
+		}
+		return list;
+	}
+	
+	public static boolean insertPost(int idPosteur, int idCible, String texte, String url){
+		Connection conn = Bdd.connectBdd();
+		if(conn == null){
+			return false;
+		}
+		Statement stmt;
+		int nRows = 0;
+		try {
+			stmt = conn.createStatement();
+			nRows = stmt.executeUpdate(
+					"INSERT INTO Post (idPosteur,idCible,texte,url) " +
+					"VALUES ('"+idPosteur+"','"+idCible+"','"+texte+"','"+url+"')");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

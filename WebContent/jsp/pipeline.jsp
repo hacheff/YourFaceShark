@@ -9,9 +9,9 @@
 	ResultSet rs = Actualite.selectActu(id, 0);
 	while(rs.next()) {
 %>
-	<fieldset>
-		<legend><%= rs.getString("nom") + " " + rs.getString("prenom") %> </legend>
-		<%= rs.getString("text") %>		
+	<fieldset class="pipelineFieldset">
+		<legend class="pipelineLegend"><%= rs.getString("nom") + " " + rs.getString("prenom") %> </legend>
+		<div class="pipelinePost"><%= rs.getString("text") %></div>		
 	</fieldset><br />
 <%
 	}
