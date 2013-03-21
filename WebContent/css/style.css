@@ -62,7 +62,7 @@ a:active {color: #1B1B1B;text-decoration: none;}
 	font-size: 1.6em;
 }
 .header{
-	height: 70px;
+	min-height: 70px;
 	min-width: 200px;
 }
 .footer{
