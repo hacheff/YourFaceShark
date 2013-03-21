@@ -35,4 +35,5 @@
 		response.sendRedirect("connexion.jsp");
 	}
 %>
+<a href='shark.jsp'>Vos infos</a>
 <jsp:include page="footer.jsp"/>
