@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <%@ page import="social.User"%>
 <%@ page import="bdd.Profil" %>
 <jsp:include page="header.jsp"/>
