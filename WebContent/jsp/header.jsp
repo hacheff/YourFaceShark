@@ -38,7 +38,10 @@
 			<% }else{ %>
 		<div class="navbar navbar-inverse navbar-fixed-top header">
 		  <div class="navbar-inner"><br/>
-				<div class="infos"><a href="jaws.jsp"><% out.println(" "+u.getPrenom()+" "+u.getNom()); %></a></div>
+				<div class="infos">
+				<a href=""><i class="icon-off icon-white deconnexion"></i></a>
+				<a href="jaws.jsp"><% out.println(" "+u.getPrenom()+" "+u.getNom()); %></a>
+				</div>
 				<form class="form-search form centrer" method="post">
 				  <input type="text" class="input-medium search-query">
 				  <button type="submit" class="btn btn-info">Rechercher</button>
