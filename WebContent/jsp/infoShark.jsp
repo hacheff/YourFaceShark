@@ -27,5 +27,4 @@
 	%>
 		<input type="submit" class="btn btn-info" value="Modifier"/>
 	</form>
-</body>
-</html> 
+<jsp:include page="footer.jsp"/>
