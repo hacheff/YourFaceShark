@@ -21,9 +21,9 @@
 	<body>
 	<% 	User u=(User) request.getSession().getAttribute("user");
 			if(u==null){%>
-		<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar navbar-inverse navbar-fixed-top header">
 		  <div class="navbar-inner"><br/>
-				<form class="form-search form" method="post">
+				<form class="form-search form centrer" method="post">
 				  <input type="text" class="input-medium search-query">
 				  <button type="submit" class="btn btn-info">Rechercher</button>
 				</form>
@@ -36,14 +36,14 @@
 		 </div>
 		</div>
 			<% }else{ %>
-		<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar navbar-inverse navbar-fixed-top header">
 		  <div class="navbar-inner"><br/>
-				<form class="form-search form" method="post">
+				<div class="infos"><a href="jaws.jsp"><% out.println(" "+u.getPrenom()+" "+u.getNom()); %></a></div>
+				<form class="form-search form centrer" method="post">
 				  <input type="text" class="input-medium search-query">
 				  <button type="submit" class="btn btn-info">Rechercher</button>
 				</form>
-				<div class="infos"><a href="jaws.jsp"><% out.println(" "+u.getPrenom()+" "+u.getNom()); %></a></div>
-				<a href="pipeline.jsp"><img alt="logo" src="../img/logo.png" class="right logo" /></a><br/><br/>
+				<a href="pipeline.jsp"><img alt="logo" src="../img/logo.png" class="right logo" /></a><br/>
 		 </div> 
 		</div>
 			<% } %>

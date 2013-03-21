@@ -39,7 +39,7 @@ a:active {color: #1B1B1B;text-decoration: none;}
 }
 
 .logo{
-	position: absolute;
+	margin-top: -20px;
 	right: 5px;
 	top: 5px;
 	width: 5%;
@@ -51,11 +51,19 @@ a:active {color: #1B1B1B;text-decoration: none;}
 .form{
 	display: inline;
 }
+.centrer{
+	position: absolute;
+	right: 20%;
+}
 .infos{
 	display: inline;
 	color: white;
 	font-weight:bold;
 	font-size: 1.6em;
+}
+.header{
+	height: 70px;
+	min-width: 200px;
 }
 .footer{
 	border: 0px;
