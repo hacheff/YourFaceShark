@@ -18,14 +18,15 @@ public class Actualite {
 			String requete = "SELECT u.nom as 'nom', u.prenom as 'prenom', p.texte as 'text', p.date as 'date', p.url as 'url'" +
 					" FROM POST p, USER u" +
 					" WHERE p.idPosteur = u.idUser" +
-					" AND idPosteur" +
+					" AND ( idPosteur " +
 					" IN (" +
 					" SELECT idShark" +
 					" FROM amis" +
-					" WHERE idUser = 3" +
-					" )" +
-					" ORDER BY date DESC" +
+					" WHERE idUser = " + idUser +
+					" ) OR idPosteur = " + idUser +
+					" ) ORDER BY date DESC" +
 					" LIMIT " + debut + " , " + (debut + 30) + "";
+			System.out.println(requete);
 			nRows = stmt.executeQuery(requete);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
