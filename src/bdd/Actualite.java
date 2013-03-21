@@ -26,7 +26,6 @@ public class Actualite {
 					" ) OR idPosteur = " + idUser +
 					" ) ORDER BY date DESC" +
 					" LIMIT " + debut + " , " + (debut + 30) + "";
-			System.out.println(requete);
 			nRows = stmt.executeQuery(requete);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
