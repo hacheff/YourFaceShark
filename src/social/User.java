@@ -11,9 +11,9 @@ public class User {
 	private String mail;
 	private Date ddn;
 	private String mdp;
-	private String urlPhoto;
+	private int idPhoto;
 	
-	public User(int id, char sexe, String nom, String prenom, String mail, Date ddn, String mdp, String url){
+	public User(int id, char sexe, String nom, String prenom, String mail, Date ddn, String mdp, int idPhoto){
 		this.id = id;
 		this.sexe = sexe;
 		this.nom = nom;
@@ -21,7 +21,18 @@ public class User {
 		this.mail = mail;
 		this.ddn = ddn;
 		this.mdp = mdp;
-		this.urlPhoto = url;
+		this.idPhoto = idPhoto;
+	}
+	
+	public User(int id, char sexe, String nom, String prenom, String mail, Date ddn, int idPhoto){
+		this.id = id;
+		this.sexe = sexe;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.mail = mail;
+		this.ddn = ddn;
+		this.mdp = null;
+		this.idPhoto = idPhoto;
 	}
 	
 	public int getId(){
@@ -70,10 +81,10 @@ public class User {
 		this.mdp = mdp;
 	}
 	
-	public String getUrl(){
-		return this.urlPhoto;
+	public int getUrl(){
+		return this.idPhoto;
 	}
-	public void setUrl(String url){
-		this.urlPhoto = url;
+	public void setUrl(int idPhoto){
+		this.idPhoto = idPhoto;
 	}
 }
