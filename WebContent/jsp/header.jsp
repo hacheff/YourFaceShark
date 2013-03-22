@@ -42,8 +42,8 @@
 				<a href="../SDeconnexion"><i class="icon-off icon-white deconnexion"></i></a>
 				<a href="jaws.jsp"><% out.println(" "+u.getPrenom()+" "+u.getNom()); %></a>
 				</div>
-				<form class="form-search form centrer" method="post">
-				  <input type="text" class="input-medium search-query">
+				<form class="form-search form centrer" method="post" action="../SRecherche">
+				  <input type="text" class="input-medium search-query" name="recherche">
 				  <button type="submit" class="btn btn-info">Rechercher</button>
 				</form>
 				<a href="pipeline.jsp"><img alt="logo" src="../img/logo.png" class="right logo" /></a><br/>

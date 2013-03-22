@@ -14,7 +14,7 @@
 		while(rs.next()) {
 %>
 		<fieldset class="pipelineFieldset">
-			<legend class="pipelineLegend"><%= rs.getString("nom") + " " + rs.getString("prenom") %> </legend>
+			<legend class="pipelineLegend"><%= rs.getString("prenom") + " " + rs.getString("nom") %> </legend>
 			<div class="pipelinePost"><%= rs.getString("text") %></div>		
 		</fieldset><br />
 <%
