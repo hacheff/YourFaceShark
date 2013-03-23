@@ -14,7 +14,6 @@
 			if(b){
 				
 			}else{
-				// DANS CE CAS ELLE PEUT MODIFIER SON IMAGE
 				out.println("<img src='../img/aileron.png' alt='Profile' class='img-rouded bgProfile' />");
 			}	
 			out.println("</span>");

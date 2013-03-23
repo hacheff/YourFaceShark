@@ -35,7 +35,7 @@ public class Recherche {
 								
 				list.add(user);
 			}
-			
+			list.add(null);
 			requete = "SELECT idUser as id, nom, prenom, dateNaissance as date, sexe, mail, profile" +
 					" FROM user u" +
 					" WHERE ((nom like ('%" + s + "%') " +
