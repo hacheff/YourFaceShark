@@ -4,11 +4,13 @@
 		<%
 		List<User> users = (List<User>) session.getAttribute("recherche");
 		if(users.isEmpty()){
-			out.println("Votre recherche ne retourne aucun résultat");
+			out.println("<div class='rechercheNoResult'>Votre recherche ne retourne aucun résultat</div>");
 		}
 		else{
 			for(User u : users){
-				out.println(u.getNom() + " " + u.getPrenom() + " <br/>");
+		%>
+				<div class="span4 hiddenPhone"></div><a href="<%= "jaws.jsp?id="+u.getId() %>"><%= u.getPrenom() + " " + u.getNom()%></a></br>
+		<%
 			}
 		}
 		%>

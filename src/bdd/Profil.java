@@ -8,8 +8,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import social.Post;
+import social.User;
 
 public class Profil {
+	
+	public static User getUserById(int id){
+		Connection conn = Bdd.connectBdd();
+		if(conn == null){
+			return null;
+		}
+		Statement stmt;
+		User user = null;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM User WHERE idUser='"+id+"'");
+			while(rs.next()) {
+				user = new User(rs.getInt("idUser"), rs.getString("sexe").charAt(0), rs.getString("nom"), rs.getString("prenom"), rs.getString("mail"), rs.getDate("dateNaissance"), rs.getInt("profile"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		return user;
+	}
 	
 	public static boolean modifyUser(int id, String nom, String prenom, String sexe, String mail, String date, String mdp){
 		Connection conn = Bdd.connectBdd();
