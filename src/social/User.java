@@ -2,6 +2,9 @@ package social;
 
 import java.sql.Date;
 
+import bdd.Social;
+import bdd.SocialInt;
+
 public class User {
 
 	private int id;
@@ -86,5 +89,15 @@ public class User {
 	}
 	public void setUrl(int idPhoto){
 		this.idPhoto = idPhoto;
+	}
+	
+	/**
+	 * Test si l'utilisateur passé en paramètre est amis avec this
+	 * @param u
+	 * @return true si u est amis false sinon
+	 */
+	public boolean isFriend(User u){
+		SocialInt social = new Social();
+		return social.isFriend(this.id, u.getId());
 	}
 }

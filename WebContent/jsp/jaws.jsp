@@ -6,7 +6,7 @@
 	<%	
 	User user = (User) request.getSession().getAttribute("user");
 	if(user != null){
-		if(request.getParameter("id") != null){
+		if(request.getParameter("id") != null){ // PROFIL D'UN SHARH
 			int id = Integer.parseInt(request.getParameter("id"));
 			User shark = Profil.getUserById(id);
 			boolean b = false; // TESTER SI IMAGE EXISTE EN BASE
@@ -15,12 +15,13 @@
 				
 			}else{
 				out.println("<img src='../img/aileron.png' alt='Profile' class='img-rouded bgProfile' />");
+				out.println("amis = " + user.isFriend(shark));
 			}	
 			out.println("</span>");
 			out.println("<div class='span nomProfile'>");
 			out.println(shark.getPrenom() + " " + shark.getNom());
 			out.println("</div>");
-		}else{
+		}else{ // PROFIL DE LA PERSONNE CONNECTE
 			out.println("<span class='span1 photoProfile'>");
 			boolean b = false; // TESTER SI IMAGE EXISTE EN BASE
 			if(b){
