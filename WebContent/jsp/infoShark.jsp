@@ -23,6 +23,6 @@
 			out.println("<label for=\"mdp\" class=\"span2\">Mot de passe :</label><input type=\"password\" id=\"mdp\" name=\"mdp\" class=\"span3\" value=" + user.getMdp() +" /><br/>");
 		}
 	%>
-		<input type="submit" class="btn btn-info" value="Modifier"/>
+		<input type="submit" class="btn btn-info" value="Modifier" style="float:center"/><a style="float:right" href="uploadPhoto.jsp">Modifiez votre photo de profil</a>
 	</form>
 <jsp:include page="footer.jsp"/>
