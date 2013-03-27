@@ -41,7 +41,7 @@ public class Connexion {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM User WHERE mail='"+mail+"' AND password ='"+mdp+"'");
 			while(rs.next()) {
-				User user = new User(rs.getInt("idUser"), rs.getString("sexe").charAt(0), rs.getString("nom"), rs.getString("prenom"), mail, rs.getDate("dateNaissance"), mdp, null);
+				User user = new User(rs.getInt("idUser"), rs.getString("sexe").charAt(0), rs.getString("nom"), rs.getString("prenom"), mail, rs.getDate("dateNaissance"), mdp, rs.getInt("profile"));
 				session.setAttribute("user", user);
 			}
 		} catch (SQLException e) {
@@ -62,7 +62,7 @@ public class Connexion {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM User WHERE idUser='"+id+"'");
 			while(rs.next()) {
-				User user = new User(rs.getInt("idUser"), rs.getString("sexe").charAt(0), rs.getString("nom"), rs.getString("prenom"), rs.getString("mail"), rs.getDate("dateNaissance"), rs.getString("password"), null);
+				User user = new User(rs.getInt("idUser"), rs.getString("sexe").charAt(0), rs.getString("nom"), rs.getString("prenom"), rs.getString("mail"), rs.getDate("dateNaissance"), rs.getString("password"), rs.getInt("profile"));
 				session.setAttribute("user", user);
 			}
 		} catch (SQLException e) {
