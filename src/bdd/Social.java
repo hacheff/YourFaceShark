@@ -41,4 +41,49 @@ public class Social implements SocialInt {
 		return false;
 	}
 
+	@Override
+	public boolean addFriend(int id, int idShark) {
+		Connection conn = Bdd.connectBdd();
+		if(conn == null){
+			return false;
+		}
+		Statement stmt;
+		int nRows = 0;
+		try {
+			stmt = conn.createStatement();
+			String requete = "INSERT INTO amis (idUser,idShark,date) " +
+					"VALUES ('"+id+"','"+idShark+"',CURRENT_TIMESTAMP)";
+			nRows = stmt.executeUpdate(requete);			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return (nRows != 0);
+	}
+
+	@Override
+	public boolean removeFriend(int id, int idShark) {
+		Connection conn = Bdd.connectBdd();
+		if(conn == null){
+			return false;
+		}
+		Statement stmt;
+		int nRows = 0;
+		try {
+			stmt = conn.createStatement();
+			String requete = "DELETE FROM amis" +
+					" WHERE idUser='"+id+"' " +
+					" AND idShark='"+idShark+"'";
+			nRows = stmt.executeUpdate(requete);		
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return (nRows != 0);
+	}
+
 }

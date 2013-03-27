@@ -100,4 +100,24 @@ public class User {
 		SocialInt social = new Social();
 		return social.isFriend(this.id, u.getId());
 	}
+	
+	/**
+	 * Ajoute un amis
+	 * @param u
+	 * @return true si l'ajout s'est bien effectué
+	 */
+	public boolean addFriend(User u){
+		SocialInt social = new Social();
+		return social.addFriend(this.id, u.getId());
+	}
+	
+	/**
+	 * Suuprime un amis
+	 * @param u
+	 * @return true si la suppression s'est bien effectué
+	 */
+	public boolean removeFriend(User u){
+		SocialInt social = new Social();
+		return social.removeFriend(this.id, u.getId());
+	}
 }
