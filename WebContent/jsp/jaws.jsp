@@ -18,6 +18,14 @@
 			}	
 			out.println("</span>");
 			out.println("<div class='span nomProfile'>");
+			
+			
+			if(!user.isFriend(shark)){
+				out.println("<a href='../SSocial?param=add&id="+ shark.getId() +"' class='btn btn-info'><i class='icon-user icon-white'></i></a>");
+			}else{ 
+				out.println("<a href='' class='btn btn-danger'><i class='icon-remove icon-white'></i></a>");
+			} 
+			
 			out.println(shark.getPrenom() + " " + shark.getNom());
 			out.println("</div>");
 			if(user.isFriend(shark)){
