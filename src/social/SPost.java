@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bdd.Profil;
+
 /**
  * Servlet implementation class SPost
  */
@@ -35,6 +37,9 @@ public class SPost extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String post = request.getParameter("post");
 		User user = (User) request.getSession().getAttribute("user");
+		
+		Profil.insertPost(user.getId(), user.getId(), post, "");
+		response.sendRedirect("jsp/jaws.jsp");
 		
 		System.out.println(post);
 	}
