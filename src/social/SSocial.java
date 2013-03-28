@@ -33,8 +33,10 @@ public class SSocial extends HttpServlet {
 		
 		if(param.equals("add")){
 			user.addFriend(Profil.getUserById(id));
+			response.sendRedirect("jsp/jaws.jsp?id="+id);
 		}else if(param.equals("remove")){
 			user.removeFriend(Profil.getUserById(id));
+			response.sendRedirect("jsp/pipeline.jsp");
 		}
 	}
 
