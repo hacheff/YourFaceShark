@@ -26,7 +26,7 @@
 				out.println("<a href='../SSocial?param=add&id="+ shark.getId() +"' class='btn btn-info'><i class='icon-user icon-white'></i></a>");
 				
 			 List<Post> liste = Profil.selectPost(shark.getId(), 0);
-				for(Post p:liste){
+				for(Post p:liste) {
 			%>
 			
 	
