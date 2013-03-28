@@ -6,7 +6,7 @@
 	<%	
 	User user = (User) request.getSession().getAttribute("user");
 	if(user != null){
-		if(request.getParameter("id") != null){ // PROFIL D'UN SHARH
+		if(request.getParameter("id") != null){ // PROFIL D'UN SHARK
 			int id = Integer.parseInt(request.getParameter("id"));
 			User shark = Profil.getUserById(id);
 			boolean b = false; // TESTER SI IMAGE EXISTE EN BASE
@@ -15,12 +15,14 @@
 				
 			}else{
 				out.println("<img src='../img/aileron.png' alt='Profile' class='img-rouded bgProfile' />");
-				out.println("amis = " + user.isFriend(shark));
 			}	
 			out.println("</span>");
 			out.println("<div class='span nomProfile'>");
 			out.println(shark.getPrenom() + " " + shark.getNom());
 			out.println("</div>");
+			if(user.isFriend(shark)){
+				out.println("<span class='clear span2'></span><a class='span' href='shark.jsp'>Information supplémentaires</a>");
+			}
 		}else{ // PROFIL DE LA PERSONNE CONNECTE
 			out.println("<span class='span1 photoProfile'>");
 			boolean b = false; // TESTER SI IMAGE EXISTE EN BASE
@@ -42,12 +44,12 @@
 					<input type="submit" class="btn btn-info span8" value="Valider" />
 				</form>
 			</div>
-<%	
+			<a href="shark.jsp">Information supplémentaires</a>
+<%
 		}
 	}
 	else{
 		response.sendRedirect("connexion.jsp");
 	}
 %>
-<a href="shark.jsp">Vos infos</a>
 <jsp:include page="footer.jsp"/>
