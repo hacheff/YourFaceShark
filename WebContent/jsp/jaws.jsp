@@ -23,13 +23,13 @@
 			if(!user.isFriend(shark)){
 				out.println("<a href='../SSocial?param=add&id="+ shark.getId() +"' class='btn btn-info'><i class='icon-user icon-white'></i></a>");
 			}else{ 
-				out.println("<a href='' class='btn btn-danger'><i class='icon-remove icon-white'></i></a>");
+				out.println("<a href='../SSocial?param=remove&id="+ shark.getId() +"' class='btn btn-danger'><i class='icon-remove icon-white'></i></a>");
 			} 
 			
 			out.println(shark.getPrenom() + " " + shark.getNom());
 			out.println("</div>");
 			if(user.isFriend(shark)){
-				out.println("<span class='clear span2'></span><a class='span' href='shark.jsp'>Information supplémentaires</a>");
+				out.println("<span class='clear span2'></span><a class='span' href='shark.jsp?id="+shark.getId()+"'>Information supplémentaires</a>");
 			}
 		}else{ // PROFIL DE LA PERSONNE CONNECTE
 			out.println("<span class='span1 photoProfile'>");

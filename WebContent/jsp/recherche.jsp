@@ -22,7 +22,7 @@
 							<%if(!amis){%>
 								<a href="../SSocial?param=add&id=<%= u.getId() %>" class="btn btn-info"><i class="icon-user icon-white"></i></a>
 							<%}else{ %>
-								<a href="" class="btn btn-danger"><i class="icon-remove icon-white"></i></a>
+								<a href="../SSocial?param=remove&id=<%= u.getId() %>" class="btn btn-danger"><i class="icon-remove icon-white"></i></a>
 							<%} %>
 							</div>
 							<a href="<%= "jaws.jsp?id="+u.getId() %>"><%= u.getPrenom() + " " + u.getNom()%></a>					
