@@ -52,7 +52,7 @@ public class Profil {
 		return (nRows != 0);
 	}
 	
-	public static String getUrlPhotoProfile(int idUser){
+	public static String getUrlPhotoProfile(int idPhoto){
 		Connection conn = Bdd.connectBdd();
 		if(conn == null){
 			return null;
@@ -62,10 +62,10 @@ public class Profil {
 		String url = "";
 		try {
 			stmt = conn.createStatement();
-			String requete = "SELECT p.url as 'url'" +
-					" FROM USER u, PHOTOS p" +
-					" WHERE u.profile = p.idPhoto" +
-					" AND idPosteur = '" + idUser + "'";
+			String requete = "SELECT p.lien as 'url'" +
+					" FROM PHOTOS p" +
+					" WHERE idPhoto = '" + idPhoto + "'";
+			
 			rs = stmt.executeQuery(requete);
 
 			while(rs.next()) {				
@@ -95,9 +95,10 @@ public class Profil {
 					" ORDER BY date DESC" +
 					" LIMIT " + debut + " , " + (debut + 30) + "";
 			rs = stmt.executeQuery(requete);
-			Post post = new Post();
-			post.setIdPosteur(idUser);
+			
 			while(rs.next()) {
+				Post post = new Post();
+				post.setIdPosteur(idUser);
 				post.setDate(rs.getDate(rs.findColumn("date")));
 				post.setTexte(rs.getString("text"));
 				post.setUrl(rs.getString("url"));
