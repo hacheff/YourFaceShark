@@ -1,3 +1,5 @@
+<%@ page import="java.util.List"%>
+<%@ page import="social.Post" %>
 <%@ page import="social.User"%>
 <%@ page import="bdd.Profil"%>
 <jsp:include page="header.jsp"/>
@@ -22,6 +24,20 @@
 			
 			if(!user.isFriend(shark)){
 				out.println("<a href='../SSocial?param=add&id="+ shark.getId() +"' class='btn btn-info'><i class='icon-user icon-white'></i></a>");
+				
+			 List<Post> liste = Profil.selectPost(shark.getId(), 0);
+				for(Post p:liste){
+			%>
+			
+	
+		<fieldset class="pipelineFieldset">
+			<legend class="pipelineLegend"><%= shark.getPrenom() + " " + shark.getNom() %> </legend>
+			<div class="pipelinePost">plop </div>		
+		</fieldset><br />
+			
+			<% } 
+				
+				
 			}else{ 
 				out.println("<a href='../SSocial?param=remove&id="+ shark.getId() +"' class='btn btn-danger'><i class='icon-remove icon-white'></i></a>");
 			} 
@@ -53,6 +69,21 @@
 				</form>
 			</div>
 			<a href="shark.jsp">Information supplémentaires</a>
+			
+		
+			
+			<% List<Post> liste = Profil.selectPost(user.getId(), 0);
+				for(Post p:liste){
+			%>
+			
+	
+		<fieldset class="pipelineFieldset">
+			<legend class="pipelineLegend"><%= user.getPrenom() + " " + user.getNom() %> </legend>
+			<div class="pipelinePost"><%= p.getTexte() %></div>		
+		</fieldset><br />
+			
+			<% } %>		
+			
 <%
 		}
 	}

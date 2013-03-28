@@ -41,7 +41,7 @@ public class SPost extends HttpServlet {
 		Profil.insertPost(user.getId(), user.getId(), post, "");
 		response.sendRedirect("jsp/jaws.jsp");
 		
-		System.out.println(post);
+		
 	}
 
 }

@@ -94,10 +94,13 @@ public class Profil {
 					" WHERE idPosteur = '" + idUser + "'" +					
 					" ORDER BY date DESC" +
 					" LIMIT " + debut + " , " + (debut + 30) + "";
+
+			
 			rs = stmt.executeQuery(requete);
-			Post post = new Post();
-			post.setIdPosteur(idUser);
+			
 			while(rs.next()) {
+				Post post = new Post();
+				post.setIdPosteur(idUser);
 				post.setDate(rs.getDate(rs.findColumn("date")));
 				post.setTexte(rs.getString("text"));
 				post.setUrl(rs.getString("url"));
