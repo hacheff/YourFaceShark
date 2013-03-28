@@ -29,7 +29,13 @@
 				} else {
 					out.println("<label>Femme</label><br/>");
 					out.println("<label>N&eacute;e le : " + user.getDate() + "</label><br/>");
-				}
+				}		
+				String url = Profil.getUrlPhotoProfile(user.getUrl());
+				if(!url.equals("")){
+					out.println("<img class='photoProfile' src='" + url + "' alt='profile' />");
+				}else{
+					out.println("Aucune photo de profile");
+				}				
 			}
 			
 			out.println("<a href='infoShark.jsp'>Modifier votre profil</a>");

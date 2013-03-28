@@ -2,6 +2,7 @@ package social;
 
 import java.sql.Date;
 
+import bdd.Profil;
 import bdd.Social;
 import bdd.SocialInt;
 
@@ -119,5 +120,9 @@ public class User {
 	public boolean removeFriend(User u){
 		SocialInt social = new Social();
 		return social.removeFriend(this.id, u.getId());
+	}
+	
+	public String getUrlProfile(){
+		return Profil.getUrlPhotoProfile(this.id);
 	}
 }
