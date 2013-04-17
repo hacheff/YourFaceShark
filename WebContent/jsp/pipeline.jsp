@@ -1,5 +1,6 @@
 <%@ page import="social.User"%>
 <%@ page import="bdd.Actualite"%>
+<%@ page import="bdd.Profil"%>
 <%@ page import="java.sql.ResultSet"%>
 <jsp:include page="header.jsp"/>
 <% 
@@ -14,7 +15,7 @@
 		while(rs.next()) {
 %>
 		<fieldset class="pipelineFieldset">
-			<legend class="pipelineLegend"><%= rs.getString("prenom") + " " + rs.getString("nom") %> </legend>
+			<legend class="pipelineLegend"><%= rs.getString("prenom") + " " + rs.getString("nom")+" "+ Profil.reverseDate(rs.getString("date").split(" ")[0]) %> </legend>
 			<div class="pipelinePost"><%= rs.getString("text") %></div>		
 		</fieldset><br />
 <%

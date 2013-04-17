@@ -25,28 +25,30 @@
 			if(!user.isFriend(shark)){
 				out.println("<a href='../SSocial?param=add&id="+ shark.getId() +"' class='btn btn-info'><i class='icon-user icon-white'></i></a>");
 				
-			 List<Post> liste = Profil.selectPost(shark.getId(), 0);
-				for(Post p:liste) {
-			%>
 			
-	
-		<fieldset class="pipelineFieldset">
-			<legend class="pipelineLegend"><%= shark.getPrenom() + " " + shark.getNom() %> </legend>
-			<div class="pipelinePost">plop </div>		
-		</fieldset><br />
-			
-			<% } 
 				
 				
 			}else{ 
 				out.println("<a href='../SSocial?param=remove&id="+ shark.getId() +"' class='btn btn-danger'><i class='icon-remove icon-white'></i></a>");
-			} 
-			
+			}
+				
 			out.println(shark.getPrenom() + " " + shark.getNom());
 			out.println("</div>");
 			if(user.isFriend(shark)){
 				out.println("<span class='clear span2'></span><a class='span' href='shark.jsp?id="+shark.getId()+"'>Information supplémentaires</a>");
+				List<Post> liste = Profil.selectPost(shark.getId(), 0);
+				for(Post p:liste){
+			%>
+			
+	
+		<fieldset class="pipelineFieldset">
+			<legend class="pipelineLegend"><%= shark.getPrenom() + " " + shark.getNom() +"    "+ Profil.reverseDate(p.getDate().toString()) %> </legend>
+			<div class="pipelinePost"><%= p.getTexte() %></div>		
+		</fieldset><br />
+			
+			<% }
 			}
+			
 		}else{ // PROFIL DE LA PERSONNE CONNECTE
 			out.println("<span class='span1 photoProfile'>");
 			boolean b = false; // TESTER SI IMAGE EXISTE EN BASE
@@ -78,7 +80,7 @@
 			
 	
 		<fieldset class="pipelineFieldset">
-			<legend class="pipelineLegend"><%= user.getPrenom() + " " + user.getNom() %> </legend>
+			<legend class="pipelineLegend"><%= user.getPrenom() + " " + user.getNom()+"    "+ Profil.reverseDate(p.getDate().toString()) %> </legend>
 			<div class="pipelinePost"><%= p.getTexte() %></div>		
 		</fieldset><br />
 			
