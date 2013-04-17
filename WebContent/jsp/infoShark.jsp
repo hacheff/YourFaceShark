@@ -11,8 +11,8 @@
 		User user = (User) request.getSession().getAttribute("user");
 		if(user != null){
 			out.println("<label for=\"nom\" class=\"span2\">Nom :</label><input type=\"text\" id=\"nom\" name=\"nom\" class=\"span3\" value=" + user.getNom() +" /><br/>");
-			out.println("<label for=\"prenom\" class=\"span2\">Prénom :</label><input type=\"text\" id=\"prenom\" name=\"prenom\" class=\"span3\" value=" + user.getPrenom() +" /><br/>");
-			out.println("<label for=\"civ\" class=\"span2\">Civilité :</label><select class=\"span3\" name=\"civ\" id=\"civ\">");
+			out.println("<label for=\"prenom\" class=\"span2\">Pr&eacute;nom :</label><input type=\"text\" id=\"prenom\" name=\"prenom\" class=\"span3\" value=" + user.getPrenom() +" /><br/>");
+			out.println("<label for=\"civ\" class=\"span2\">Civilit&eacute; :</label><select class=\"span3\" name=\"civ\" id=\"civ\">");
 			if(user.getSexe() == 'm'){
 				out.println("<option value=\"f\">Femme</option><option value=\"m\" selected =\"selected\">Homme</option></select><br />");
 			} else{
