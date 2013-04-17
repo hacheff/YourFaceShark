@@ -15,7 +15,7 @@ public class Actualite {
 		ResultSet nRows = null;
 		try {
 			stmt = conn.createStatement();
-			String requete = "SELECT u.nom as 'nom', u.prenom as 'prenom', p.texte as 'text', p.date as 'date', p.url as 'url'" +
+			String requete = "SELECT u.idUser as 'id', p.idPost as 'idPost', u.nom as 'nom', u.prenom as 'prenom', p.texte as 'text', p.date as 'date', p.url as 'url'" +
 					" FROM POST p, USER u" +
 					" WHERE p.idPosteur = u.idUser" +
 					" AND ( idPosteur " +

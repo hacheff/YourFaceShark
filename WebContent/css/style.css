@@ -113,7 +113,7 @@ a:active {color: #FFFFFF;text-decoration: none;}
 	border-color: #49AFCD;
     border-style: dotted;
     border-width: 2px;
-    margin: auto;
+    margin: -25px auto auto;
     padding: 5px;
     width: 90%;
 }
@@ -128,8 +128,14 @@ a:active {color: #FFFFFF;text-decoration: none;}
     margin-top: 20px;
     border: none;
 }
+.pipelineLegend a{
+	color: #49AFCD;
+}
 .pipelinePost{	
 	margin-top: -25px;
+}
+.champCommentaire{
+	height: 2em;
 }
 /** RECHERCHE **/
 .rechercheNoResult{

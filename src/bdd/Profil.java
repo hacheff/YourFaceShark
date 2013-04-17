@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import social.Commentaire;
 import social.Post;
 import social.User;
 
@@ -128,11 +129,67 @@ public class Profil {
 					"INSERT INTO Post (idPosteur,idCible,texte,url) " +
 					"VALUES ('"+idPosteur+"','"+idCible+"','"+texte+"','"+url+"')");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
 		return (nRows != 0);
+	}
+	
+	public static boolean insertComentaire(int idPost, int idUser, String commentaire){
+		Connection conn = Bdd.connectBdd();
+		if(conn == null){
+			return false;
+		}
+		Statement stmt;
+		int nRows = 0;
+		try {
+			stmt = conn.createStatement();
+			nRows = stmt.executeUpdate(
+					"INSERT INTO Commentaires (idPost,idUser,commentaire) " +
+					"VALUES ('"+idPost+"','"+idUser+"','"+commentaire+"')");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return (nRows != 0);
+	}
+	
+	public static List<Commentaire> selectCommentairesByIdPost(Integer idPost, int debut){
+		Connection conn = Bdd.connectBdd();
+		if(conn == null){
+			return null;
+		}
+		Statement stmt;
+		ResultSet rs = null;
+		List<Commentaire> list = new ArrayList<Commentaire>();
+		try {
+			stmt = conn.createStatement();
+			String requete = "SELECT u.idUser as 'id', nom, prenom, dateNaissance, sexe, mail, profile, c.idPost as 'idPost', c.commentaire as 'commentaire'" +
+					" FROM COMMENTAIRES c, USER u" +
+					" WHERE c.idUser = u.idUser" +	
+					" AND c.idPost = " + idPost +
+					" ORDER BY c.idCommentaire" +
+					" LIMIT " + debut + " , " + (debut + 30) + "";
+
+			rs = stmt.executeQuery(requete);
+			
+			while(rs.next()) {
+				Commentaire commentaire = new Commentaire();
+				//User(int id, char sexe, String nom, String prenom, String mail, Date ddn, int idPhoto)
+				User user = new User(rs.getInt("id"), rs.getString("sexe").charAt(0), rs.getString("nom"), rs.getString("prenom"), rs.getString("mail"), rs.getDate("dateNaissance"), rs.getInt("profile"));
+				
+				commentaire.setIdPost(rs.getInt("idPost"));
+				commentaire.setCommentaire(rs.getString("commentaire"));
+				commentaire.setUser(user);
+				
+				list.add(commentaire);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return new ArrayList<Commentaire>();
+		}
+		return list;
 	}
 	
 	public static String changeDate(String date){
