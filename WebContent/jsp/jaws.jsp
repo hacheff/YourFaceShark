@@ -4,7 +4,20 @@
 <%@ page import="bdd.Profil"%>
 <jsp:include page="header.jsp"/>
 <span class="span2"></span>
-
+<script>
+function displayCommentaire(n){
+	var id = "idCommentaireAdd"+n;
+	$("#" + id).toggle();
+}
+function afficherCommentaire(n, idPost){
+	var id = "idCommentaireList"+n;
+	console.log(idPost);
+	 $.post("../SCommentaireListAjax", { idPost: idPost}, function(data) {
+		 document.getElementById(id).innerHTML = data;
+	});
+	$("#" + id).toggle();
+}
+</script>
 	<%	
 	User user = (User) request.getSession().getAttribute("user");
 	if(user != null){
@@ -24,10 +37,6 @@
 			
 			if(!user.isFriend(shark)){
 				out.println("<a href='../SSocial?param=add&id="+ shark.getId() +"' class='btn btn-info'><i class='icon-user icon-white'></i></a>");
-				
-			
-				
-				
 			}else{ 
 				out.println("<a href='../SSocial?param=remove&id="+ shark.getId() +"' class='btn btn-danger'><i class='icon-remove icon-white'></i></a>");
 			}
@@ -36,6 +45,7 @@
 			out.println("</div>");
 			if(user.isFriend(shark)){
 				out.println("<span class='clear span2'></span><a class='span' href='shark.jsp?id="+shark.getId()+"'>Information supplémentaires</a>");
+				out.println("<div class='clear'></div>");
 				List<Post> liste = Profil.selectPost(shark.getId(), 0);
 				for(Post p:liste){
 			%>
@@ -43,7 +53,24 @@
 	
 		<fieldset class="pipelineFieldset">
 			<legend class="pipelineLegend"><%= shark.getPrenom() + " " + shark.getNom() +"    "+ Profil.reverseDate(p.getDate().toString()) %> </legend>
-			<div class="pipelinePost"><%= p.getTexte() %></div>		
+			<div class="pipelinePost"><%= p.getTexte() %></div>	
+			<br />
+			<span class="left" onclick="displayCommentaire('<%= p.getIdPost() %>');" >
+				<img src="../img/commentaires.png" alt="commentaires" /><br />					
+			</span>	
+			<span class="left" onclick="afficherCommentaire('<%= p.getIdPost() %>', '<%= p.getIdPost() %>')">
+				<i class="icon-plus"></i>
+			</span><div class="clear"></div>
+			<div id="idCommentaireAdd<%= p.getIdPost() %>" style="display: none;">
+				<form action="../SCommentaire" method="POST">
+					<input type="hidden" name="urlReturn" value="jsp/jaws.jsp?id=<%= id %>" />
+					<input type="hidden" name="idPost" value="<%= p.getIdPost() %>" />
+					<input type="text" class="champCommentaire" name="commentaire" />
+				</form>
+			</div>
+			<div id="idCommentaireList<%= p.getIdPost() %>" style="display: none;">
+			<!-- REMPLIE EN AJAX -->
+			</div>	
 		</fieldset><br />
 			
 			<% }
@@ -81,7 +108,24 @@
 	
 		<fieldset class="pipelineFieldset">
 			<legend class="pipelineLegend"><%= user.getPrenom() + " " + user.getNom()+"    "+ Profil.reverseDate(p.getDate().toString()) %> </legend>
-			<div class="pipelinePost"><%= p.getTexte() %></div>		
+			<div class="pipelinePost"><%= p.getTexte() %></div>	
+			<br />
+			<span class="left" onclick="displayCommentaire('<%= p.getIdPost() %>');" >
+				<img src="../img/commentaires.png" alt="commentaires" /><br />					
+			</span>	
+			<span class="left" onclick="afficherCommentaire('<%= p.getIdPost() %>', '<%= p.getIdPost() %>')">
+				<i class="icon-plus"></i>
+			</span><div class="clear"></div>
+			<div id="idCommentaireAdd<%= p.getIdPost() %>" style="display: none;">
+				<form action="../SCommentaire" method="POST">
+					<input type="hidden" name="urlReturn" value="jsp/jaws.jsp" />
+					<input type="hidden" name="idPost" value="<%= p.getIdPost() %>" />
+					<input type="text" class="champCommentaire" name="commentaire" />
+				</form>
+			</div>
+			<div id="idCommentaireList<%= p.getIdPost() %>" style="display: none;">
+			<!-- REMPLIE EN AJAX -->
+			</div>	
 		</fieldset><br />
 			
 			<% } %>		

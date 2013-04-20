@@ -90,7 +90,7 @@ public class Profil {
 		List<Post> list = new ArrayList<Post>();
 		try {
 			stmt = conn.createStatement();
-			String requete = "SELECT p.texte as 'text', p.date as 'date', p.url as 'url'" +
+			String requete = "SELECT p.idPost as 'id', p.texte as 'text', p.date as 'date', p.url as 'url'" +
 					" FROM POST p" +
 					" WHERE idPosteur = '" + idUser + "'" +					
 					" ORDER BY date DESC" +
@@ -101,6 +101,7 @@ public class Profil {
 			
 			while(rs.next()) {
 				Post post = new Post();
+				post.setIdPost(rs.getInt("id"));
 				post.setIdPosteur(idUser);
 				post.setDate(rs.getDate(rs.findColumn("date")));
 				post.setTexte(rs.getString("text"));
