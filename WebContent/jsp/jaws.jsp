@@ -59,7 +59,7 @@ function afficherCommentaire(n, idPost){
 				<img src="../img/commentaires.png" alt="commentaires" /><br />					
 			</span>	
 			<span class="left" onclick="afficherCommentaire('<%= p.getIdPost() %>', '<%= p.getIdPost() %>')">
-				<i class="icon-plus"></i>
+				<i class="icon-plus"></i>(<%= p.getNbCom() %>)
 			</span><div class="clear"></div>
 			<div id="idCommentaireAdd<%= p.getIdPost() %>" style="display: none;">
 				<form action="../SCommentaire" method="POST">
@@ -114,7 +114,7 @@ function afficherCommentaire(n, idPost){
 				<img src="../img/commentaires.png" alt="commentaires" /><br />					
 			</span>	
 			<span class="left" onclick="afficherCommentaire('<%= p.getIdPost() %>', '<%= p.getIdPost() %>')">
-				<i class="icon-plus"></i>
+				<i class="icon-plus"></i>(<%= p.getNbCom() %>)
 			</span><div class="clear"></div>
 			<div id="idCommentaireAdd<%= p.getIdPost() %>" style="display: none;">
 				<form action="../SCommentaire" method="POST">

@@ -35,7 +35,7 @@ function afficherCommentaire(n, idPost){
 						<img src="../img/commentaires.png" alt="commentaires" /><br />					
 					</span>	
 					<span class="left" onclick="afficherCommentaire('<%= cpt %>', '<%= rs.getString("idPost") %>')">
-						<i class="icon-plus"></i>
+						<i class="icon-plus"></i>(<%= rs.getString("nbCom") %>)
 					</span><div class="clear"></div>
 					<div id="idCommentaireAdd<%= cpt %>" style="display: none;">
 						<form action="../SCommentaire" method="POST">

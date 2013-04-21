@@ -90,7 +90,8 @@ public class Profil {
 		List<Post> list = new ArrayList<Post>();
 		try {
 			stmt = conn.createStatement();
-			String requete = "SELECT p.idPost as 'id', p.texte as 'text', p.date as 'date', p.url as 'url'" +
+			String requete = "SELECT p.idPost as 'id', p.texte as 'text', p.date as 'date', p.url as 'url'," +
+					" (SELECT count(*) FROM COMMENTAIRES c WHERE c.idPost = p.idPost) as nbCom" +
 					" FROM POST p" +
 					" WHERE idPosteur = '" + idUser + "'" +					
 					" ORDER BY date DESC" +
@@ -106,6 +107,7 @@ public class Profil {
 				post.setDate(rs.getDate(rs.findColumn("date")));
 				post.setTexte(rs.getString("text"));
 				post.setUrl(rs.getString("url"));
+				post.setNbCom(rs.getInt("nbCom"));
 				
 				list.add(post);
 			}

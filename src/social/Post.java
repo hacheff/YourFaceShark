@@ -8,7 +8,8 @@ public class Post {
     private int idCible;
     private String texte;
     private String url;
-    private Date date;
+    private Date date;    
+	private int nbCom;
    
     public Post(){}
    
@@ -63,4 +64,12 @@ public class Post {
     public Date getDate(){
         return this.date;
     }
+
+	public int getNbCom() {
+		return nbCom;
+	}
+
+	public void setNbCom(int nbCom) {
+		this.nbCom = nbCom;
+	}
 }
