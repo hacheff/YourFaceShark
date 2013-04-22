@@ -145,3 +145,11 @@ a:active {color: #FFFFFF;text-decoration: none;}
 	font-size: 1.2em;
     padding-bottom: 5px;
 }
+.infoshark{
+	display: inline;
+	font-size: 1.2em;
+	margin-left: 10px;
+}
+.photoshark{
+    margin-top: 10px;
+}
