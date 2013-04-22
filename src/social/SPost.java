@@ -36,12 +36,11 @@ public class SPost extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String post = request.getParameter("post");
+		String url = request.getParameter("return");
 		User user = (User) request.getSession().getAttribute("user");
 		
 		Profil.insertPost(user.getId(), user.getId(), post, "");
-		response.sendRedirect("jsp/jaws.jsp");
-		
-		
+		response.sendRedirect(url);
 	}
 
 }

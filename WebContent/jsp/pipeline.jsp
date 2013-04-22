@@ -15,7 +15,21 @@ function afficherCommentaire(n, idPost){
 	});
 	$("#" + id).toggle();
 }
+function afficherPost(){
+	var id = "addPost";
+	$("#" + id).toggle();
+}
 </script>
+<span class="pipelinePostAdd" onclick="afficherPost()">
+	<span class="btn btn-info"><i class="icon-edit icon-white"></i></span>
+</span>
+<div id="addPost" style="display: none;">
+	<form action="../SPost" method="post" class="pipelinePostAdd">
+		<textarea class="span8" name="post"></textarea><br />
+		<input type="hidden" value="jsp/pipeline.jsp" name="return" />
+		<input type="submit" class="btn btn-info span8" value="Valider" />
+	</form>
+</div><div class="clear"></div>
 <% 
 	User user = (User) session.getAttribute("user");
 	if(user == null){

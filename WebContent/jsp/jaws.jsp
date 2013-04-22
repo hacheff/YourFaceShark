@@ -94,6 +94,7 @@ function afficherCommentaire(n, idPost){
 			<div>
 				<form action="../SPost" method="post">
 					<textarea class="span8" name="post"></textarea>
+					<input type="hidden" value="jsp/jaws.jsp" name="return" />
 					<input type="submit" class="btn btn-info span8" value="Valider" />
 				</form>
 			</div>

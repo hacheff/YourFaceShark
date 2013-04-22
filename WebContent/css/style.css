@@ -137,6 +137,9 @@ a:active {color: #FFFFFF;text-decoration: none;}
 .champCommentaire{
 	height: 2em;
 }
+.pipelinePostAdd{
+	margin-left: 5%;
+}
 /** RECHERCHE **/
 .rechercheNoResult{
 	margin-left: 40%;
@@ -152,4 +155,5 @@ a:active {color: #FFFFFF;text-decoration: none;}
 }
 .photoshark{
     margin-top: 10px;
+    margin-left: 10px;
 }
