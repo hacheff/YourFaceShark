@@ -157,3 +157,13 @@ a:active {color: #FFFFFF;text-decoration: none;}
     margin-top: 10px;
     margin-left: 10px;
 }
+.infoSharkModif{
+	text-align: center;
+	margin-left: 30%;
+	border: 1px solid #49AFCD;
+	padding: 10px;
+	width: 40%;
+}
+.footerMargin{
+	height: 20px;
+}

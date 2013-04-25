@@ -1,4 +1,5 @@
 <%@page import="java.util.Calendar"%>
+		<div class="footerMargin">&nbsp;</div>
 		<div class="clear"></div>
 		<div class="navbar navbar-fixed-bottom hidden-phone">
 			<div class="footer" id="footer"><br/>			
