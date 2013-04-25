@@ -22,7 +22,7 @@ public class Image {
 		Blob blob;
 		try {
 			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT blob FROM Photos WHERE idPhoto='"+id+"'");
+			ResultSet rs = stmt.executeQuery("SELECT donnees FROM Photos WHERE idPhoto='"+id+"'");
 			while(rs.next()) {
 				blob = rs.getBlob(1);
 				img = blob.getBytes(1,(int)blob.length());

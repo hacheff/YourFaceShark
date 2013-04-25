@@ -58,7 +58,6 @@ public class Profil {
 			return;
 		}
 		Statement stmt;
-		ResultSet rs = null;
 		try{
 			stmt = conn.createStatement();
 			String rqt = "UPDATE user SET profile=(SELECT MAX(idPhoto) FROM photos) WHERE idUser ='"+ id +"'";
@@ -67,33 +66,6 @@ public class Profil {
 			e.printStackTrace();
 		}
 	} 
-	
-	public static String getUrlPhotoProfile(int idPhoto){
-		Connection conn = Bdd.connectBdd();
-		if(conn == null){
-			return null;
-		}
-		Statement stmt;
-		ResultSet rs = null;
-		String url = "";
-		/*try {
-			stmt = conn.createStatement();
-			String requete = "SELECT p.lien as 'url'" +
-					" FROM PHOTOS p" +
-					" WHERE idPhoto = '" + idPhoto + "'";
-			
-			rs = stmt.executeQuery(requete);
-
-			while(rs.next()) {				
-				url = rs.getString("url");
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return "";
-		}*/
-		return url;
-	}
 	
 	public static List<Post> selectPost(Integer idUser, int debut){
 		Connection conn = Bdd.connectBdd();

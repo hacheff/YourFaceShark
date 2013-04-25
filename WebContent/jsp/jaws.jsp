@@ -2,6 +2,8 @@
 <%@ page import="social.Post" %>
 <%@ page import="social.User"%>
 <%@ page import="bdd.Profil"%>
+<%@ page import="bdd.Image"%>
+
 <jsp:include page="header.jsp"/>
 <span class="span2"></span>
 <script>
@@ -23,10 +25,9 @@ function afficherCommentaire(n, idPost){
 	if(user != null){
 		if(request.getParameter("id") != null){ // PROFIL D'UN SHARK
 			int id = Integer.parseInt(request.getParameter("id"));
-			User shark = Profil.getUserById(id);
-			boolean b = false; // TESTER SI IMAGE EXISTE EN BASE
+			User shark = Profil.getUserById(id);		
 			out.println("<span class='span1 photoProfile'>");
-			if(b){
+			if(shark.getUrl() != 0){
 				
 			}else{
 				out.println("<img src='../img/aileron.png' alt='Profile' class='img-rouded bgProfile' />");
@@ -78,11 +79,9 @@ function afficherCommentaire(n, idPost){
 			
 		}else{ // PROFIL DE LA PERSONNE CONNECTE
 			out.println("<span class='span1 photoProfile'>");
-			boolean b = false; // TESTER SI IMAGE EXISTE EN BASE
-			if(b){
-				
+			if(user.getUrl() != 0){
+				out.println("<img src='images.jsp?idPhoto=" + user.getUrl() + "' alt='Profile' class='img-rouded bgProfile' />");
 			}else{
-				// DANS CE CAS ELLE PEUT MODIFIER SON IMAGE
 				out.println("<img src='../img/aileron.png' alt='Profile' class='img-rouded bgProfile' />");
 			}
 			out.println("</span>");

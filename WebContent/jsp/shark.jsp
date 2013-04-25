@@ -22,13 +22,7 @@
 				}
 				
 			}else{ // INFORMATION DE L'UTILISATEUR CONNECTE
-				out.println("<a href='jaws.jsp'><h2>" + user.getPrenom()+ " " + user.getNom() + "</h2></a>");		
-				String url = Profil.getUrlPhotoProfile(user.getUrl());
-				if(!url.equals("")){
-					out.println("<img class='photoProfile photoshark' src='" + url + "' alt='profile' /><br/>");
-				}else{
-					out.println("<div class='infoshark'>Aucune photo de profil</div><br/>");
-				}				
+				out.println("<a href='jaws.jsp'><h2>" + user.getPrenom()+ " " + user.getNom() + "</h2></a>");					
 				out.println("<a href='infoShark.jsp'><input type='submit' class='btn btn-info' value='Modifier votre profil' style='float:center'/></a><br/>");
 				if(user.getSexe() == 'm'){
 					out.println("<div class='infoshark'>Homme</div><br/>");
