@@ -10,6 +10,8 @@ import org.apache.commons.fileupload.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import bdd.Image;
+import bdd.Profil;
 
 /**
  * Servlet implementation class UploadServlet
@@ -36,7 +38,6 @@ public class UploadServlet extends HttpServlet {
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-		System.out.println("request: " + request);
 		if (!isMultipart) {
 			System.out.println("File Not Uploaded");
 		} else {
@@ -45,7 +46,6 @@ public class UploadServlet extends HttpServlet {
 			List items = null;
 			try {
 				items = upload.parseRequest(request);
-				System.out.println("items: " + items);
 			} catch (FileUploadException e) {
 				e.printStackTrace();
 			}
@@ -59,7 +59,6 @@ public class UploadServlet extends HttpServlet {
 						int r = Math.abs(generator.nextInt());
 						String reg = "[.*]";
 						String replacingtext = "";
-						System.out.println("Text before replacing is:-" + itemName);
 						Pattern pattern = Pattern.compile(reg);
 						Matcher matcher = pattern.matcher(itemName);
 						StringBuffer buffer = new StringBuffer();
@@ -68,40 +67,23 @@ public class UploadServlet extends HttpServlet {
 						}
 						int IndexOf = itemName.indexOf(".");
 						String domainName = itemName.substring(IndexOf);
-						System.out.println("domainName: " + domainName);
 						String finalimage = buffer.toString() + "_" + r + domainName;
-						System.out.println("Final Image===" + finalimage);
-						File savedFile = new File("C:/apache-tomcat-6.0.16/webapps/example/" + "images\\" + finalimage);
+						String path = request.getServletContext().getRealPath("");
+						int index = path.lastIndexOf("\\");
+						path = path.substring(0, index) + "\\images\\";
+						File savedFile = new File(path + finalimage);
 						item.write(savedFile);
-						out.println("<html>");
-						out.println("<body>");
-						out.println("<table><tr><td>");
-						out.println("<img src=images/" + finalimage + ">");
-						out.println("</td></tr></table>");
-						Connection conn = null;
-						String url = "jdbc:mysql://localhost:3306/";
-						String dbName = "thundercatz";
-						String driver = "com.mysql.jdbc.Driver";
-						String username = "root";
-						String userPassword = "";
-						String strQuery = null;
-						String strQuery1 = null;
-						String imgLen = "";
-						try {
-							System.out.println("itemName::::: " + itemName);
-							Class.forName(driver).newInstance();
-							conn = DriverManager.getConnection(url + dbName, username, userPassword);
-							Statement st = conn.createStatement();
-							strQuery = "insert into testimage values image='" + finalimage + "'";
-							int rs = st.executeUpdate(strQuery);
-							System.out.println("Query Executed Successfully++++++++++++++");
-							out.println("image inserted successfully");
-							out.println("</body>");
-							out.println("</html>");
-						} catch (Exception e) {
-							System.out.println(e.getMessage());
-						} finally {
-							conn.close();
+						System.out.println(savedFile.toString());
+						
+						//insere la photo dans la base
+						User user = (User)request.getSession().getAttribute("user");
+						boolean res = Image.insertPhoto(savedFile.toString(), user.getId());
+						//fait le lien entre la photo insérée et la colonne de la tabl user
+						if(res){
+							Profil.setPhotoProfil(user.getId());
+							response.sendRedirect("jsp/jaws.jsp");
+						}else{
+							System.out.println("faaaiiiiiillll");
 						}
 					} catch (Exception e) {
 						e.printStackTrace();

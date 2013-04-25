@@ -44,7 +44,6 @@ public class Profil {
 		try {
 			stmt = conn.createStatement();
 			nRows = stmt.executeUpdate("UPDATE User SET sexe='"+ sexe +"', nom='"+ nom +"', prenom='"+ prenom +"', mail='"+ mail +"', dateNaissance='"+ changeDate(date) +"', password='"+ mdp +"' WHERE idUser='" + id + "'");
-			System.out.println("UPDATE User SET sexe='"+ sexe +"', nom='"+ nom +"', prenom='"+ prenom +"', mail='"+ mail +"', dateNaissance='"+ changeDate(date) +"', password='"+ mdp +"' WHERE idUser='" + id + "'");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,6 +51,22 @@ public class Profil {
 		}
 		return (nRows != 0);
 	}
+	
+	public static void setPhotoProfil(int id){
+		Connection conn = Bdd.connectBdd();
+		if(conn == null){
+			return;
+		}
+		Statement stmt;
+		ResultSet rs = null;
+		try{
+			stmt = conn.createStatement();
+			String rqt = "UPDATE user SET profile=(SELECT MAX(idPhoto) FROM photos) WHERE idUser ='"+ id +"'";
+			stmt.executeUpdate(rqt);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	} 
 	
 	public static String getUrlPhotoProfile(int idPhoto){
 		Connection conn = Bdd.connectBdd();
@@ -61,7 +76,7 @@ public class Profil {
 		Statement stmt;
 		ResultSet rs = null;
 		String url = "";
-		try {
+		/*try {
 			stmt = conn.createStatement();
 			String requete = "SELECT p.lien as 'url'" +
 					" FROM PHOTOS p" +
@@ -76,7 +91,7 @@ public class Profil {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return "";
-		}
+		}*/
 		return url;
 	}
 	
