@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `Like` (
   `idLike` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idPost` int(10) unsigned NOT NULL DEFAULT '0',
   `idLikeur` int(10) unsigned NOT NULL DEFAULT '0',
-  `nombre` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `choix` int(5) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`idLike`),
   KEY `idPost` (`idPost`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
