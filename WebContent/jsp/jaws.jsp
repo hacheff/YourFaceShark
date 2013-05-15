@@ -3,6 +3,7 @@
 <%@ page import="social.User"%>
 <%@ page import="bdd.Profil"%>
 <%@ page import="bdd.Image"%>
+<%@ page import="bdd.Like"%>
 
 <jsp:include page="header.jsp"/>
 <span class="span2"></span>
@@ -18,6 +19,26 @@ function afficherCommentaire(n, idPost){
 		 document.getElementById(id).innerHTML = data;
 	});
 	$("#" + id).toggle();
+}
+function addLike(idpost, idlikeur){
+	$.post("../SLikeAjax", { idPost: idpost, idLikeur: idlikeur, choix: 1}, function(data) {
+		var html = document.getElementById("nblike"+idpost).innerHTML;
+		html = html.replace("(", "");
+		html = html.replace(")", "");
+		n = parseInt(html);
+		n++;
+		document.getElementById("nblike"+idpost).innerHTML = "("+n+")";		
+	});
+}
+function addUnLike(idpost, idlikeur){
+	$.post("../SLikeAjax", { idPost: idpost, idLikeur: idlikeur, choix: 0}, function(data) {
+		var html = document.getElementById("nbunlike"+idpost).innerHTML;
+		html = html.replace("(", "");
+		html = html.replace(")", "");
+		n = parseInt(html);
+		n++;
+		document.getElementById("nbunlike"+idpost).innerHTML = "("+n+")";	
+	});
 }
 </script>
 	<%	
@@ -49,6 +70,7 @@ function afficherCommentaire(n, idPost){
 				out.println("<div class='clear'></div>");
 				List<Post> liste = Profil.selectPost(shark.getId(), 0);
 				for(Post p:liste){
+					int[] tab = Like.requeteLike(p.getIdPost(), user.getId());
 			%>
 			
 	
@@ -56,6 +78,22 @@ function afficherCommentaire(n, idPost){
 			<legend class="pipelineLegend"><%= shark.getPrenom() + " " + shark.getNom() +"    "+ Profil.reverseDate(p.getDate().toString()) %> </legend>
 			<div class="pipelinePost"><%= p.getTexte() %></div>	
 			<br />
+			<span class='left'>
+			
+				<%if(tab[2] == 0){ %>
+					<span id='nblike<%= p.getIdPost() %>'>(<%= tab[0] %>)</span><span class='icon-circle-arrow-up' onclick='addLike(<%= p.getIdPost()%>, <%= user.getId()%>)'></span>
+				<%}else{%>
+					<span id='nblike<%= p.getIdPost() %>'>(<%= tab[0] %>)</span><span class='icon-circle-arrow-up'></span>
+				<%}
+				if(tab[3] == 0){%>
+					<span class='icon-circle-arrow-down' onclick='addUnLike(<%= p.getIdPost() %>, <%= user.getId()%>)'></span><span id="nbunlike<%= p.getIdPost()%>">(<%= tab[1] %>)</span>
+				<%
+				}else{%>
+					<span class='icon-circle-arrow-down'></span><span id="nbunlike<%= p.getIdPost() %>">(<%= tab[1] %>)</span>
+				<% } %>
+				
+			</span>
+			<div class="clear"></div>
 			<span class="left" onclick="displayCommentaire('<%= p.getIdPost() %>');" >
 				<img src="../img/commentaires.png" alt="commentaires" /><br />					
 			</span>	
@@ -103,6 +141,7 @@ function afficherCommentaire(n, idPost){
 			
 			<% List<Post> liste = Profil.selectPost(user.getId(), 0);
 				for(Post p:liste){
+					int[] tab = Like.requeteLike(p.getIdPost(), user.getId());
 			%>
 			
 	
@@ -110,6 +149,22 @@ function afficherCommentaire(n, idPost){
 			<legend class="pipelineLegend"><%= user.getPrenom() + " " + user.getNom()+"    "+ Profil.reverseDate(p.getDate().toString()) %> </legend>
 			<div class="pipelinePost"><%= p.getTexte() %></div>	
 			<br />
+			<span class='left'>
+			
+				<%if(tab[2] == 0){ %>
+					<span id='nblike<%= p.getIdPost() %>'>(<%= tab[0] %>)</span><span class='icon-circle-arrow-up' onclick='addLike(<%= p.getIdPost()%>, <%= user.getId()%>)'></span>
+				<%}else{%>
+					<span id='nblike<%= p.getIdPost() %>'>(<%= tab[0] %>)</span><span class='icon-circle-arrow-up'></span>
+				<%}
+				if(tab[3] == 0){%>
+					<span class='icon-circle-arrow-down' onclick='addUnLike(<%= p.getIdPost() %>, <%= user.getId()%>)'></span><span id="nbunlike<%= p.getIdPost()%>">(<%= tab[1] %>)</span>
+				<%
+				}else{%>
+					<span class='icon-circle-arrow-down'></span><span id="nbunlike<%= p.getIdPost() %>">(<%= tab[1] %>)</span>
+				<% } %>
+				
+			</span>
+			<div class="clear"></div>
 			<span class="left" onclick="displayCommentaire('<%= p.getIdPost() %>');" >
 				<img src="../img/commentaires.png" alt="commentaires" /><br />					
 			</span>	
