@@ -28,7 +28,7 @@ function afficherCommentaire(n, idPost){
 			User shark = Profil.getUserById(id);		
 			out.println("<span class='span1 photoProfile'>");
 			if(shark.getUrl() != 0){
-				
+				out.println("<img src='images.jsp?idPhoto=" + shark.getUrl() + "' alt='Profile' class='img-rouded bgProfile' />");
 			}else{
 				out.println("<img src='../img/aileron.png' alt='Profile' class='img-rouded bgProfile' />");
 			}	

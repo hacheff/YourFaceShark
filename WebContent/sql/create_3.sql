@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
 -- Structure de la table `like`
 --
 
-CREATE TABLE IF NOT EXISTS `Like` (
+CREATE TABLE IF NOT EXISTS `koule` (
   `idLike` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idPost` int(10) unsigned NOT NULL DEFAULT '0',
   `idLikeur` int(10) unsigned NOT NULL DEFAULT '0',
