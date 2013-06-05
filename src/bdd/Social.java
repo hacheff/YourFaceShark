@@ -5,6 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import social.User;
+
+import neo4j.N4JAdmin;
+import neo4j.N4JUser;
+
 
 public class Social implements SocialInt {
 
@@ -42,7 +47,7 @@ public class Social implements SocialInt {
 	}
 
 	@Override
-	public boolean addFriend(int id, int idShark) {
+	public boolean addFriend(User user, User userShark) {
 		Connection conn = Bdd.connectBdd();
 		if(conn == null){
 			return false;
@@ -52,7 +57,7 @@ public class Social implements SocialInt {
 		try {
 			stmt = conn.createStatement();
 			String requete = "INSERT INTO amis (idUser,idShark,date) " +
-					"VALUES ('"+id+"','"+idShark+"',CURRENT_TIMESTAMP)";
+					"VALUES ('"+user.getId()+"','"+userShark.getId()+"',CURRENT_TIMESTAMP)";
 			nRows = stmt.executeUpdate(requete);			
 			
 		} catch (SQLException e) {
@@ -60,11 +65,17 @@ public class Social implements SocialInt {
 			e.printStackTrace();
 			return false;
 		}
+		
+		N4JAdmin admin = Bdd.connectNeo4j();
+		N4JUser nUser = new N4JUser(user);
+		N4JUser nShark = new N4JUser(userShark);
+		nUser.addAcquaintance(nShark.getUserNode());
+		
 		return (nRows != 0);
 	}
 
 	@Override
-	public boolean removeFriend(int id, int idShark) {
+	public boolean removeFriend(User user, User userShark) {
 		Connection conn = Bdd.connectBdd();
 		if(conn == null){
 			return false;
@@ -74,8 +85,8 @@ public class Social implements SocialInt {
 		try {
 			stmt = conn.createStatement();
 			String requete = "DELETE FROM amis" +
-					" WHERE idUser='"+id+"' " +
-					" AND idShark='"+idShark+"'";
+					" WHERE idUser='"+user.getId()+"' " +
+					" AND idShark='"+userShark.getId()+"'";
 			nRows = stmt.executeUpdate(requete);			
 			
 		} catch (SQLException e) {

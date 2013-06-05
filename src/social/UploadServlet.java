@@ -1,7 +1,6 @@
 package social;
 
 import java.io.*;
-import java.sql.*;
 import java.util.*;
 import java.util.regex.*;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -30,9 +29,7 @@ public class UploadServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -78,7 +75,7 @@ public class UploadServlet extends HttpServlet {
 						//insere la photo dans la base
 						User user = (User)request.getSession().getAttribute("user");
 						boolean res = Image.insertPhoto(savedFile.toString(), user.getId());
-						//fait le lien entre la photo insérée et la colonne de la tabl user
+						//fait le lien entre la photo insï¿½rï¿½e et la colonne de la tabl user
 						if(res){
 							Profil.setPhotoProfil(user.getId());
 							response.sendRedirect("jsp/jaws.jsp");

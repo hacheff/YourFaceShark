@@ -2,16 +2,13 @@ package social;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bdd.Connexion;
 import bdd.Profil;
 
 /**
@@ -28,15 +25,12 @@ public class SInfoProfil extends HttpServlet {
      */
     public SInfoProfil() {
         super(); 
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -54,11 +48,11 @@ public class SInfoProfil extends HttpServlet {
 		boolean erreur = false;
 		
 		if(nom.isEmpty()){
-			messageErreur.append("Le nom ne peut être vide<br />");
+			messageErreur.append("Le nom ne peut ï¿½tre vide<br />");
 			erreur = true;
 		}
 		if(prenom.isEmpty()){
-			messageErreur.append("Le prénom ne peut être vide<br />");
+			messageErreur.append("Le prï¿½nom ne peut ï¿½tre vide<br />");
 			erreur = true;
 		}
 		if(mail.isEmpty() || !mail.matches(MAIL_REGEX)){
@@ -66,7 +60,7 @@ public class SInfoProfil extends HttpServlet {
 			erreur = true;
 		}
 		if(ddn.isEmpty() || !ddn.matches(DDN_REGEX)){
-			messageErreur.append("Le date de naisance doit être au format: jj/mm/yyyy<br />");
+			messageErreur.append("Le date de naisance doit ï¿½tre au format: jj/mm/yyyy<br />");
 			erreur = true;
 		}		
 		if(mdp.isEmpty()){

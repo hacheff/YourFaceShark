@@ -5,9 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import social.User;
-
 public class Like {
+	/**
+	 * Ajout d'un like sur un POST
+	 * @param id_post
+	 * @param id_likeur
+	 * @param choix
+	 * @return true si l'insertion s'est correctement deroulee
+	 */
 	public static boolean insertLike(int id_post, int id_likeur, int choix){
 		Connection conn = Bdd.connectBdd();
 		if(conn == null){
@@ -25,6 +30,13 @@ public class Like {
 		}
 		return (nRows != 0);
 	}
+	
+	/**
+	 * Nombre de like / unlike sur un POST
+	 * @param idPost
+	 * @param idUser
+	 * @return int[]
+	 */
 	public static int[] requeteLike(int idPost, int idUser){
 		Connection conn = Bdd.connectBdd();
 		if(conn == null){
@@ -40,7 +52,6 @@ public class Like {
 					" (SELECT count(*) FROM KOULE k WHERE k.idPost = "+ idPost +" AND choix = 1 AND k.idLikeur = "+ idUser +") as likeuser," +
 					" (SELECT count(*) FROM KOULE k WHERE k.idPost = "+ idPost +" AND choix = 0 AND k.idLikeur = "+ idUser +") as unlikeuser" +
 					" FROM POST p";
-			System.out.println(requete);
 			rs = stmt.executeQuery(requete);
 			while(rs.next()) {
 				tab[0]=rs.getInt("nblike");
@@ -49,7 +60,6 @@ public class Like {
 				tab[3]=rs.getInt("unlikeuser");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}

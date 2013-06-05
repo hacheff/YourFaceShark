@@ -13,6 +13,11 @@ import social.User;
 
 public class Profil {
 	
+	/**
+	 * Retourne l'utilisateur qui a pour id celui passe en parametre
+	 * @param id
+	 * @return
+	 */
 	public static User getUserById(int id){
 		Connection conn = Bdd.connectBdd();
 		if(conn == null){
@@ -27,13 +32,23 @@ public class Profil {
 				user = new User(rs.getInt("idUser"), rs.getString("sexe").charAt(0), rs.getString("nom"), rs.getString("prenom"), rs.getString("mail"), rs.getDate("dateNaissance"), rs.getInt("profile"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
 		return user;
 	}
 	
+	/**
+	 * Modification de l'utilisateur...
+	 * @param id
+	 * @param nom
+	 * @param prenom
+	 * @param sexe
+	 * @param mail
+	 * @param date
+	 * @param mdp
+	 * @return
+	 */
 	public static boolean modifyUser(int id, String nom, String prenom, String sexe, String mail, String date, String mdp){
 		Connection conn = Bdd.connectBdd();
 		if(conn == null){
@@ -52,6 +67,10 @@ public class Profil {
 		return (nRows != 0);
 	}
 	
+	/**
+	 * Modification de la photo de profil de l'utilisateur qui a pour id celui passe en parametre
+	 * @param id
+	 */
 	public static void setPhotoProfil(int id){
 		Connection conn = Bdd.connectBdd();
 		if(conn == null){
@@ -67,6 +86,12 @@ public class Profil {
 		}
 	} 
 	
+	/**
+	 * Retourne tous les POST de l'utilisateur qui a pour id celui passe en parametre
+	 * @param idUser
+	 * @param debut
+	 * @return
+	 */
 	public static List<Post> selectPost(Integer idUser, int debut){
 		Connection conn = Bdd.connectBdd();
 		if(conn == null){
@@ -106,6 +131,14 @@ public class Profil {
 		return list;
 	}
 	
+	/**
+	 * Insertion d'un POST...
+	 * @param idPosteur
+	 * @param idCible
+	 * @param texte
+	 * @param url
+	 * @return
+	 */
 	public static boolean insertPost(int idPosteur, int idCible, String texte, String url){
 		Connection conn = Bdd.connectBdd();
 		if(conn == null){
@@ -125,6 +158,13 @@ public class Profil {
 		return (nRows != 0);
 	}
 	
+	/**
+	 * Insertion d'un COMMENTAIRE
+	 * @param idPost
+	 * @param idUser
+	 * @param commentaire
+	 * @return
+	 */
 	public static boolean insertComentaire(int idPost, int idUser, String commentaire){
 		Connection conn = Bdd.connectBdd();
 		if(conn == null){
@@ -144,6 +184,12 @@ public class Profil {
 		return (nRows != 0);
 	}
 	
+	/**
+	 * Retourne la liste des COMMENTAIRE qui appartienne au POST qui a pour id celui passe en parametre
+	 * @param idPost
+	 * @param debut
+	 * @return
+	 */
 	public static List<Commentaire> selectCommentairesByIdPost(Integer idPost, int debut){
 		Connection conn = Bdd.connectBdd();
 		if(conn == null){
@@ -182,6 +228,12 @@ public class Profil {
 		return list;
 	}
 	
+	/**
+	 * Retourne la liste des amis
+	 * @param id
+	 * @param debut
+	 * @return
+	 */
 	public static List<User> selectShark(int id, int debut){
 		Connection conn = Bdd.connectBdd();
 		if(conn == null){

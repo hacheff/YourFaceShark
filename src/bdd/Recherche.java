@@ -11,6 +11,13 @@ import social.User;
 
 public class Recherche {
 
+	/**
+	 * Recherche tous les USER qui ont le param s dans leur nom ou prenom
+	 * @param s
+	 * @param id
+	 * @param debut
+	 * @return List<User>
+	 */
 	public static List<User> selectRecherche(String s, int id, int debut){
 		Connection conn = Bdd.connectBdd();
 		if(conn == null){

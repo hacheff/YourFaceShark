@@ -25,15 +25,12 @@ public class SInscription extends HttpServlet {
      */
     public SInscription() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -50,11 +47,11 @@ public class SInscription extends HttpServlet {
 		boolean erreur = false;
 		
 		if(nom.isEmpty()){
-			messageErreur.append("Le nom ne peut être vide<br />");
+			messageErreur.append("Le nom ne peut ï¿½tre vide<br />");
 			erreur = true;
 		}
 		if(prenom.isEmpty()){
-			messageErreur.append("Le prénom ne peut être vide<br />");
+			messageErreur.append("Le prï¿½nom ne peut ï¿½tre vide<br />");
 			erreur = true;
 		}
 		if(mail.isEmpty() || !mail.matches(MAIL_REGEX)){
@@ -62,7 +59,7 @@ public class SInscription extends HttpServlet {
 			erreur = true;
 		}
 		if(ddn.isEmpty() || !ddn.matches(DDN_REGEX)){
-			messageErreur.append("Le date de naisance doit être au format: jj/mm/yyyy<br />");
+			messageErreur.append("Le date de naisance doit ï¿½tre au format: jj/mm/yyyy<br />");
 			erreur = true;
 		}		
 		if(mdp.isEmpty()){
@@ -79,7 +76,7 @@ public class SInscription extends HttpServlet {
 				request.getSession().setAttribute("erreurCatch", "Erreur Inscription: probleme BDD <br/> SInscription - DoPost");
 				response.sendRedirect("jsp/error.jsp");
 			}
-			out.println("Inscription effectué");
+			response.sendRedirect("jsp/connexion.jsp");
 		}
 	}
 }

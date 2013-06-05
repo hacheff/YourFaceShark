@@ -1,4 +1,7 @@
 <%@ page import="social.User"%>
+<%@ page import="neo4j.SuggestRel"%>
+<%@ page import="neo4j.N4JUser"%>
+<%@ page import="org.neo4j.graphdb.Node"%>
 <%@ page import="bdd.Profil"%>
 <jsp:include page="header.jsp"/>
 	<p>
@@ -29,8 +32,10 @@
 					out.println("<div class='infoshark'>N&eacute; le : " + user.getDate() + "</div><br/>");
 				} else {
 					out.println("<div class='infoshark'>Femme</div><br/>");
-					out.println("<div class='infoshark'>N&eacute;e le : " + user.getDate() + "</div><br/>");
+					out.println("<div class='infoshark'>N&eacute;e le : " + user.getDate() + "</div><br/>");					
 				}
+				
+				out.println(N4JUser.graphe(user));
 			}
 			
 		}else{

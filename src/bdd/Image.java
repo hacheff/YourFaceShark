@@ -12,6 +12,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Image {
+	
+	/**
+	 * Recupere l'image au format BLOB (tableau de byte)
+	 * @param id
+	 * @return byte[]
+	 */
 	public static byte[] getBlob(int id){
 		Connection conn = Bdd.connectBdd();
 		if(conn == null){
@@ -28,13 +34,18 @@ public class Image {
 				img = blob.getBytes(1,(int)blob.length());
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
 		return img;
 	}
 	
+	/**
+	 * Insertion de la photo au format BLOB
+	 * @param location
+	 * @param idUser
+	 * @return true si l'insertion s'est correctement deroulee
+	 */
 	public static boolean insertPhoto(String location, int idUser)
 	{
 		int nb = 0;

@@ -26,7 +26,7 @@ public class SDeconnexion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-request.getSession().setAttribute("user", null);
+		request.getSession().setAttribute("user", null);
 		
 		Cookie[] cookies = request.getCookies();
 		if(cookies != null){
@@ -45,8 +45,6 @@ request.getSession().setAttribute("user", null);
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
 
 }

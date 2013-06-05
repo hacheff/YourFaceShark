@@ -27,7 +27,8 @@ function addLike(idpost, idlikeur){
 		html = html.replace(")", "");
 		n = parseInt(html);
 		n++;
-		document.getElementById("nblike"+idpost).innerHTML = "("+n+")";		
+		document.getElementById("nblike"+idpost).innerHTML = "("+n+")";	
+		setTimeout(location.reload(),500);		
 	});
 }
 function addUnLike(idpost, idlikeur){
@@ -38,6 +39,7 @@ function addUnLike(idpost, idlikeur){
 		n = parseInt(html);
 		n++;
 		document.getElementById("nbunlike"+idpost).innerHTML = "("+n+")";	
+		setTimeout(location.reload(),500);	
 	});
 }
 </script>

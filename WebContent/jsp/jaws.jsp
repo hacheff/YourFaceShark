@@ -28,7 +28,8 @@ function addLike(idpost, idlikeur){
 		n = parseInt(html);
 		n++;
 		document.getElementById("nblike"+idpost).innerHTML = "("+n+")";		
-	});
+		setTimeout(location.reload(),500);	
+	}); 
 }
 function addUnLike(idpost, idlikeur){
 	$.post("../SLikeAjax", { idPost: idpost, idLikeur: idlikeur, choix: 0}, function(data) {
@@ -38,7 +39,8 @@ function addUnLike(idpost, idlikeur){
 		n = parseInt(html);
 		n++;
 		document.getElementById("nbunlike"+idpost).innerHTML = "("+n+")";	
-	});
+		setTimeout(location.reload(),500);	
+	});	
 }
 </script>
 	<%	
@@ -146,7 +148,10 @@ function addUnLike(idpost, idlikeur){
 			
 	
 		<fieldset class="pipelineFieldset">
-			<legend class="pipelineLegend"><%= user.getPrenom() + " " + user.getNom()+"    "+ Profil.reverseDate(p.getDate().toString()) %> </legend>
+			<legend class="pipelineLegend">
+				<img src="../img/supp.png" alt="supprimer"/>
+				<%= user.getPrenom() + " " + user.getNom()+"    "+ Profil.reverseDate(p.getDate().toString()) %> 
+			</legend>
 			<div class="pipelinePost"><%= p.getTexte() %></div>	
 			<br />
 			<span class='left'>
